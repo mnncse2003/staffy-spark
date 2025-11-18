@@ -3,19 +3,19 @@ import { CheckCircle, Shield, UserCheck, Briefcase } from "lucide-react";
 
 export const RoleBasedFeatures = () => {
   return (
-    <section className="bg-muted py-24">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">
+    <section className="bg-muted py-12 sm:py-16 lg:py-24">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Built for Every Role in Your Organization
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
             Customized experiences and permissions for different user types
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          <Card className="p-8 bg-card border-border">
+        <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
+          <Card className="p-6 sm:p-8 bg-card border-border">
             <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
               <UserCheck className="h-8 w-8 text-primary" />
             </div>
@@ -44,7 +44,7 @@ export const RoleBasedFeatures = () => {
             </ul>
           </Card>
 
-          <Card className="p-8 bg-gradient-hero text-primary-foreground shadow-elegant border-0">
+          <Card className="p-6 sm:p-8 bg-gradient-hero text-primary-foreground shadow-elegant border-0">
             <div className="h-16 w-16 rounded-full bg-white/20 flex items-center justify-center mb-6">
               <Shield className="h-8 w-8 text-white" />
             </div>
@@ -73,7 +73,7 @@ export const RoleBasedFeatures = () => {
             </ul>
           </Card>
 
-          <Card className="p-8 bg-card border-border">
+          <Card className="p-6 sm:p-8 bg-card border-border">
             <div className="h-16 w-16 rounded-full bg-accent/10 flex items-center justify-center mb-6">
               <Briefcase className="h-8 w-8 text-accent" />
             </div>

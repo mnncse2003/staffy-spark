@@ -4,18 +4,18 @@ import { Play, Download, Calendar } from "lucide-react";
 
 export const Demo = () => {
   return (
-    <section id="demo" className="container mx-auto px-6 py-24">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold text-foreground mb-4">
+    <section id="demo" className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24">
+      <div className="text-center mb-12 sm:mb-16">
+        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
           See It In Action
         </h2>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
           Watch our interactive demo or schedule a personalized walkthrough with our team
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        <Card className="p-8 bg-card border-border">
+      <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
+        <Card className="p-6 sm:p-8 bg-card border-border">
           <div className="aspect-video bg-muted rounded-lg mb-6 flex items-center justify-center relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-hero opacity-10"></div>
             <Button 
@@ -42,7 +42,7 @@ export const Demo = () => {
           </div>
         </Card>
 
-        <Card className="p-8 bg-gradient-hero text-primary-foreground shadow-elegant border-0">
+        <Card className="p-6 sm:p-8 bg-gradient-hero text-primary-foreground shadow-elegant border-0">
           <Calendar className="h-12 w-12 mb-6" />
           <h3 className="text-2xl font-bold mb-3">Schedule a Live Demo</h3>
           <p className="mb-6 opacity-90">
