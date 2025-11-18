@@ -7,17 +7,17 @@ export const CTA = () => {
   };
 
   return (
-    <section className="container mx-auto px-6 py-24">
-      <Card className="p-12 bg-gradient-hero text-primary-foreground text-center shadow-elegant border-0">
-        <h2 className="text-4xl font-bold mb-4">Ready to Transform Your HR Operations?</h2>
-        <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+    <section className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24">
+      <Card className="p-6 sm:p-8 lg:p-12 bg-gradient-hero text-primary-foreground text-center shadow-elegant border-0">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Ready to Transform Your HR Operations?</h2>
+        <p className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 opacity-90 max-w-2xl mx-auto">
           Join hundreds of companies already using our platform to streamline their HR processes
         </p>
-        <div className="flex gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
           <Button 
             size="lg" 
             variant="secondary" 
-            className="bg-white text-primary hover:bg-white/90"
+            className="bg-white text-primary hover:bg-white/90 w-full sm:w-auto"
             onClick={() => scrollToSection('pricing')}
           >
             Start Free Trial
@@ -25,7 +25,7 @@ export const CTA = () => {
           <Button 
             size="lg" 
             variant="outline" 
-            className="border-2 border-white text-white hover:bg-white/10"
+            className="border-2 border-white text-white hover:bg-white/10 w-full sm:w-auto"
             onClick={() => scrollToSection('demo')}
           >
             Schedule Demo

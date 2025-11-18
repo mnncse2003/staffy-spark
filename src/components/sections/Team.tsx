@@ -44,17 +44,17 @@ export const Team = () => {
   ];
 
   return (
-    <section id="team" className="container mx-auto px-6 py-24">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold text-foreground mb-4">
+    <section id="team" className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24">
+      <div className="text-center mb-12 sm:mb-16">
+        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
           Meet Our Team
         </h2>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
           A passionate team dedicated to revolutionizing HR management
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {team.map((member, index) => (
           <Card key={index} className="p-6 bg-card border-border text-center hover:shadow-elegant transition-smooth">
             <Avatar className="h-24 w-24 mx-auto mb-4">

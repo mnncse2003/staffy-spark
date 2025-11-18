@@ -50,23 +50,23 @@ export const Pricing = () => {
   ];
 
   return (
-    <section id="pricing" className="container mx-auto px-6 py-24">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold text-foreground mb-4">
+    <section id="pricing" className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24">
+      <div className="text-center mb-12 sm:mb-16">
+        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
           Simple, Transparent Pricing
         </h2>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
           Choose the plan that fits your organization's needs
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div className="grid md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
         {plans.map((plan) => (
           <Card 
             key={plan.name} 
-            className={`p-8 ${
+            className={`p-6 sm:p-8 ${
               plan.highlighted 
-                ? 'bg-gradient-hero text-primary-foreground shadow-elegant border-0 scale-105' 
+                ? 'bg-gradient-hero text-primary-foreground shadow-elegant border-0 md:scale-105' 
                 : 'bg-card border-border'
             }`}
           >
