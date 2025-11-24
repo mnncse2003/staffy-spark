@@ -7,68 +7,64 @@ export const RoleBasedFeatures = () => {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Built for Every Role in Your Organization
+            Five User Roles with Specific Permissions
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
-            Customized experiences and permissions for different user types
+            Role-based access control for Super Admin, HR, Staff, HOD, and Intern users
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           <Card className="p-6 sm:p-8 bg-card border-border">
             <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-              <UserCheck className="h-8 w-8 text-primary" />
+              <Shield className="h-8 w-8 text-primary" />
             </div>
-            <h3 className="text-2xl font-bold text-foreground mb-4">For Employees</h3>
-            <ul className="space-y-3 text-muted-foreground">
+            <h3 className="text-xl font-bold text-foreground mb-4">Super Admin</h3>
+            <ul className="space-y-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <span>Personalized dashboard with quick stats</span>
+                <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                <span>Create and manage multiple organizations</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <span>Easy attendance marking and tracking</span>
+                <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                <span>Global access across all organizations</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <span>Submit leave requests instantly</span>
+                <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                <span>Configure system-wide branding</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <span>Access salary slips anytime</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <span>Send birthday wishes to colleagues</span>
+                <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                <span>Manage all employees globally</span>
               </li>
             </ul>
           </Card>
 
           <Card className="p-6 sm:p-8 bg-gradient-hero text-primary-foreground shadow-elegant border-0">
             <div className="h-16 w-16 rounded-full bg-white/20 flex items-center justify-center mb-6">
-              <Shield className="h-8 w-8 text-white" />
+              <UserCheck className="h-8 w-8 text-white" />
             </div>
-            <h3 className="text-2xl font-bold mb-4">For HR Admins</h3>
-            <ul className="space-y-3">
+            <h3 className="text-xl font-bold mb-4">HR/Admin</h3>
+            <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                <span>Full employee lifecycle management</span>
+                <CheckCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                <span>Employee management with Excel import</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                <span>Bulk import from Excel files</span>
+                <CheckCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                <span>Attendance and leave approvals</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                <span>Approve attendance and leave requests</span>
+                <CheckCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                <span>Salary slip generation</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                <span>Generate salary slips with ease</span>
+                <CheckCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                <span>Department and holiday management</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                <span>Manage departments and holidays</span>
+                <CheckCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                <span>User account management</span>
               </li>
             </ul>
           </Card>
@@ -77,27 +73,52 @@ export const RoleBasedFeatures = () => {
             <div className="h-16 w-16 rounded-full bg-accent/10 flex items-center justify-center mb-6">
               <Briefcase className="h-8 w-8 text-accent" />
             </div>
-            <h3 className="text-2xl font-bold text-foreground mb-4">For HODs</h3>
-            <ul className="space-y-3 text-muted-foreground">
+            <h3 className="text-xl font-bold text-foreground mb-4">Staff & Interns</h3>
+            <ul className="space-y-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                <span>Review department leave requests</span>
+                <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
+                <span>Personalized dashboard with quick stats</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                <span>Approve or reject with comments</span>
+                <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
+                <span>Comprehensive profile management</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                <span>View team member records</span>
+                <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
+                <span>Attendance marking and edit requests</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                <span>Track department attendance</span>
+                <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
+                <span>Leave applications with tracking</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                <span>Monitor leave balances</span>
+                <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
+                <span>Salary slips and birthday wishes</span>
+              </li>
+            </ul>
+          </Card>
+
+          <Card className="p-6 sm:p-8 bg-card border-border">
+            <div className="h-16 w-16 rounded-full bg-secondary/10 flex items-center justify-center mb-6">
+              <Briefcase className="h-8 w-8 text-secondary" />
+            </div>
+            <h3 className="text-xl font-bold text-foreground mb-4">HOD</h3>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-4 w-4 text-secondary mt-0.5 flex-shrink-0" />
+                <span>Leave approvals for department only</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-4 w-4 text-secondary mt-0.5 flex-shrink-0" />
+                <span>View department employee records</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-4 w-4 text-secondary mt-0.5 flex-shrink-0" />
+                <span>Review leave history with comments</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="h-4 w-4 text-secondary mt-0.5 flex-shrink-0" />
+                <span>Track approval timestamps</span>
               </li>
             </ul>
           </Card>
