@@ -16,12 +16,12 @@ export const Hero = () => {
             Streamline Your HR Operations
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight">
-            Modern HR Management Made{" "}
-            <span className="bg-gradient-hero bg-clip-text text-transparent">Simple</span>
+            Complete Multi-Organization{" "}
+            <span className="bg-gradient-hero bg-clip-text text-transparent">HR Management System</span>
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-muted-foreground leading-relaxed">
-            A comprehensive web-based platform that streamlines employee management, 
-            attendance tracking, leave requests, and salary slip generation—all in one place.
+            Streamline employee management, attendance tracking, leave requests, salary slips, and more 
+            across multiple organizations with our comprehensive cloud-based platform built with React, TypeScript, and Firebase.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Button 
@@ -42,16 +42,16 @@ export const Hero = () => {
           </div>
           <div className="grid grid-cols-3 gap-4 sm:gap-6 pt-4">
             <div>
-              <p className="text-2xl sm:text-3xl font-bold text-foreground">500+</p>
-              <p className="text-xs sm:text-sm text-muted-foreground">Companies</p>
+              <p className="text-2xl sm:text-3xl font-bold text-foreground">Multi-Org</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">Support</p>
             </div>
             <div>
-              <p className="text-2xl sm:text-3xl font-bold text-foreground">50k+</p>
-              <p className="text-xs sm:text-sm text-muted-foreground">Active Users</p>
+              <p className="text-2xl sm:text-3xl font-bold text-foreground">5 Roles</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">Access Levels</p>
             </div>
             <div>
-              <p className="text-2xl sm:text-3xl font-bold text-foreground">99.9%</p>
-              <p className="text-xs sm:text-sm text-muted-foreground">Uptime</p>
+              <p className="text-2xl sm:text-3xl font-bold text-foreground">12+</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">Leave Types</p>
             </div>
           </div>
         </div>

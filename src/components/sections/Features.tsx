@@ -16,47 +16,47 @@ export const Features = () => {
     {
       icon: Users,
       title: "Employee Management",
-      description: "Comprehensive employee profiles with documents, qualifications, and family details. Import from Excel or add manually."
+      description: "Complete employee lifecycle management with profile updates, document uploads, Excel import, and comprehensive personal details including qualifications, experience, and family information."
     },
     {
       icon: Clock,
       title: "Attendance Tracking",
-      description: "Easy punch-in/out system with edit requests. Generate daily, weekly, and monthly attendance reports."
+      description: "Real-time punch-in/out with edit requests for forgotten punch-outs. Generate daily, weekly, and monthly attendance reports with automated tracking."
     },
     {
       icon: Calendar,
       title: "Leave Management",
-      description: "Submit and track 14+ leave types including PL, SL, Maternity, Paternity, and WFH with automated routing."
+      description: "12+ leave types with gender-specific options (Maternity, Paternity). Approval workflows routing to HR and HOD with leave balance tracking and history."
     },
     {
       icon: FileText,
-      title: "Salary Slips",
-      description: "Generate and view detailed monthly salary slips with customizable allowances and deductions."
+      title: "Salary Slip Generation",
+      description: "Automated monthly salary slips with customizable allowances (HRA, travel), deductions (tax, PF), and downloadable PDF reports with detailed breakdowns."
     },
     {
       icon: CheckCircle,
-      title: "Approval Workflows",
-      description: "Streamlined approval process for leaves and attendance edits with multi-level authorization."
+      title: "Document Management",
+      description: "Upload and manage PAN, Aadhar, qualification documents, and previous experience records securely with cloud storage."
     },
     {
       icon: Award,
       title: "Birthday Wishes",
-      description: "Celebrate your team with automated birthday notifications and personalized wish templates."
+      description: "View colleagues with birthdays today, send personalized wishes using templates or custom messages, and receive private birthday notifications."
     },
     {
       icon: BarChart3,
-      title: "Reports & Analytics",
-      description: "Comprehensive reporting for attendance, leaves, and employee data with export capabilities."
+      title: "Multi-Organization Support",
+      description: "Manage multiple organizations with separate branding (logo and name), independent employee databases, and organization-specific configurations."
     },
     {
       icon: Shield,
       title: "Role-Based Access",
-      description: "Secure access control for Staff, HR, HOD, and Intern roles with specific permissions."
+      description: "Five user roles (Super Admin, HR, Staff, HOD, Intern) with specific permissions and security. Organization selection during login with role-based dashboards."
     },
     {
       icon: Briefcase,
       title: "Department Management",
-      description: "Organize teams by departments with HOD assignments and holiday management."
+      description: "Create departments, assign HODs, manage company holidays, and organize teams. HODs approve department employee leave requests only."
     }
   ];
 
@@ -64,10 +64,10 @@ export const Features = () => {
     <section id="features" className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24">
       <div className="text-center mb-12 sm:mb-16">
         <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-          Everything You Need to Manage Your Team
+          Comprehensive HR Management Features
         </h2>
         <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
-          Powerful features designed to simplify HR operations and boost productivity
+          Built with React, TypeScript, and Firebase for a complete cloud-based HR solution
         </p>
       </div>
       
