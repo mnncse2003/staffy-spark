@@ -1,21 +1,25 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Play, Download, Calendar } from "lucide-react";
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { GeometricDecorations } from "@/components/ui/GeometricDecorations";
 
 export const Demo = () => {
   return (
-    <section id="demo" className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24">
-      <div className="text-center mb-12 sm:mb-16">
+    <section id="demo" className="relative container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24 overflow-hidden">
+      <GeometricDecorations variant="default" />
+      <AnimatedSection className="text-center mb-12 sm:mb-16">
         <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
           See It In Action
         </h2>
         <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
           Watch our interactive demo or schedule a personalized walkthrough with our team
         </p>
-      </div>
+      </AnimatedSection>
 
-      <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
-        <Card className="p-6 sm:p-8 bg-card border-border">
+      <div className="relative grid lg:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
+        <AnimatedSection animation="fade-right" delay={100}>
+          <Card className="p-6 sm:p-8 bg-card border-border h-full">
           <div className="aspect-video bg-muted rounded-lg mb-6 flex items-center justify-center relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-hero opacity-10"></div>
             <Button 
@@ -42,9 +46,11 @@ export const Demo = () => {
               <span className="sm:hidden">PDF Guide</span>
             </Button>
           </div>
-        </Card>
+          </Card>
+        </AnimatedSection>
 
-        <Card className="p-6 sm:p-8 bg-gradient-hero text-primary-foreground shadow-elegant border-0">
+        <AnimatedSection animation="fade-left" delay={200}>
+          <Card className="p-6 sm:p-8 bg-gradient-hero text-primary-foreground shadow-elegant border-0 h-full">
           <Calendar className="h-10 w-10 sm:h-12 sm:w-12 mb-6" />
           <h3 className="text-xl sm:text-2xl font-bold mb-3">Schedule a Live Demo</h3>
           <p className="text-sm sm:text-base mb-6 opacity-90">
@@ -74,7 +80,8 @@ export const Demo = () => {
           >
             Schedule Your Demo
           </Button>
-        </Card>
+          </Card>
+        </AnimatedSection>
       </div>
     </section>
   );

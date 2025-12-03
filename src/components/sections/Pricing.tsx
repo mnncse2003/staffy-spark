@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { GeometricDecorations } from "@/components/ui/GeometricDecorations";
 
 export const Pricing = () => {
   const plans = [
@@ -50,18 +52,20 @@ export const Pricing = () => {
   ];
 
   return (
-    <section id="pricing" className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24">
-      <div className="text-center mb-12 sm:mb-16">
+    <section id="pricing" className="relative container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24 overflow-hidden">
+      <GeometricDecorations variant="pricing" />
+      <AnimatedSection className="text-center mb-12 sm:mb-16">
         <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
           Simple, Transparent Pricing
         </h2>
         <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
           Choose the plan that fits your organization's needs
         </p>
-      </div>
+      </AnimatedSection>
 
-      <div className="grid md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-        {plans.map((plan) => (
+      <div className="relative grid md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+        {plans.map((plan, index) => (
+          <AnimatedSection key={plan.name} animation="fade-up" delay={index * 150}>
           <Card 
             key={plan.name} 
             className={`p-6 sm:p-8 ${
@@ -107,6 +111,7 @@ export const Pricing = () => {
               {plan.price === "Custom" ? "Contact Sales" : "Get Started"}
             </Button>
           </Card>
+          </AnimatedSection>
         ))}
       </div>
     </section>

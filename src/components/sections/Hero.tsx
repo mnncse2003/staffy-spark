@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Zap } from "lucide-react";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { GeometricDecorations } from "@/components/ui/GeometricDecorations";
 
 export const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -8,9 +10,10 @@ export const Hero = () => {
   };
 
   return (
-    <section className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24">
-      <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-        <div className="space-y-6 sm:space-y-8">
+    <section className="relative container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24 overflow-hidden">
+      <GeometricDecorations variant="hero" />
+      <div className="relative grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <AnimatedSection animation="fade-up" className="space-y-6 sm:space-y-8">
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-medium">
             <Zap className="h-3 w-3 sm:h-4 sm:w-4" />
             Streamline Your HR Operations
@@ -54,15 +57,15 @@ export const Hero = () => {
               <p className="text-xs sm:text-sm text-muted-foreground">Leave Types</p>
             </div>
           </div>
-        </div>
-        <div className="relative mt-8 lg:mt-0">
+        </AnimatedSection>
+        <AnimatedSection animation="fade-left" delay={200} className="relative mt-8 lg:mt-0">
           <div className="absolute inset-0 bg-gradient-hero opacity-20 blur-3xl rounded-full"></div>
           <img 
             src={heroDashboard} 
             alt="HR Dashboard Interface showcasing employee management features" 
             className="relative rounded-2xl shadow-elegant border border-border"
           />
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   );
