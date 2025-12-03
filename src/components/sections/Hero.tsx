@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Zap } from "lucide-react";
-import heroDashboard from "@/assets/hero-dashboard.jpg";
+import heroIllustration from "@/assets/illustration-hero.png";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { GeometricDecorations } from "@/components/ui/GeometricDecorations";
 
@@ -59,11 +59,11 @@ export const Hero = () => {
           </div>
         </AnimatedSection>
         <AnimatedSection animation="fade-left" delay={200} className="relative mt-8 lg:mt-0">
-          <div className="absolute inset-0 bg-gradient-hero opacity-20 blur-3xl rounded-full"></div>
+          <div className="absolute inset-0 bg-gradient-hero opacity-10 blur-3xl rounded-full scale-110"></div>
           <img 
-            src={heroDashboard} 
-            alt="HR Dashboard Interface showcasing employee management features" 
-            className="relative rounded-2xl shadow-elegant border border-border"
+            src={heroIllustration} 
+            alt="Team collaborating on HR dashboard with employee profiles and analytics" 
+            className="relative w-full max-w-xl mx-auto drop-shadow-2xl"
           />
         </AnimatedSection>
       </div>
