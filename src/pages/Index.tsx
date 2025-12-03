@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/sections/Navigation";
 import { Hero } from "@/components/sections/Hero";
+import { FeaturesShowcase } from "@/components/sections/FeaturesShowcase";
 import { Features } from "@/components/sections/Features";
 import { RoleBasedFeatures } from "@/components/sections/RoleBasedFeatures";
 import { Pricing } from "@/components/sections/Pricing";
@@ -16,6 +17,7 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-subtle">
       <Navigation />
       <Hero />
+      <FeaturesShowcase />
       <Features />
       <RoleBasedFeatures />
       <Pricing />

@@ -1,0 +1,113 @@
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { GeometricDecorations } from "@/components/ui/GeometricDecorations";
+import { CheckCircle } from "lucide-react";
+
+import illustrationEmployees from "@/assets/illustration-employees.png";
+import illustrationAttendance from "@/assets/illustration-attendance.png";
+import illustrationLeave from "@/assets/illustration-leave.png";
+import illustrationSalary from "@/assets/illustration-salary.png";
+import illustrationBirthday from "@/assets/illustration-birthday.png";
+
+export const FeaturesShowcase = () => {
+  const showcaseFeatures = [
+    {
+      title: "Employee Management",
+      description: "Complete employee lifecycle management with profile updates, document uploads, and Excel import for bulk data.",
+      image: illustrationEmployees,
+      features: ["Profile Management", "Document Uploads", "Excel Import", "Family & Experience Details"],
+      reverse: false,
+    },
+    {
+      title: "Attendance Tracking",
+      description: "Real-time punch-in/out with edit requests for forgotten punch-outs and comprehensive reporting.",
+      image: illustrationAttendance,
+      features: ["Punch In/Out", "Edit Requests", "Daily Reports", "Automated Tracking"],
+      reverse: true,
+    },
+    {
+      title: "Leave Management",
+      description: "12+ leave types with gender-specific options. Approval workflows routing to HR and HOD.",
+      image: illustrationLeave,
+      features: ["12+ Leave Types", "Approval Workflows", "Balance Tracking", "Leave History"],
+      reverse: false,
+    },
+    {
+      title: "Salary Slip Generation",
+      description: "Automated monthly salary slips with customizable allowances and downloadable PDF reports.",
+      image: illustrationSalary,
+      features: ["Auto Generation", "Custom Allowances", "Tax Deductions", "PDF Download"],
+      reverse: true,
+    },
+    {
+      title: "Birthday Wishes",
+      description: "View colleagues with birthdays, send personalized wishes, and build team culture.",
+      image: illustrationBirthday,
+      features: ["Birthday Calendar", "Custom Templates", "Team Notifications", "Culture Building"],
+      reverse: false,
+    },
+  ];
+
+  return (
+    <section className="relative py-12 sm:py-16 lg:py-24 overflow-hidden">
+      <GeometricDecorations variant="features" />
+      <div className="container mx-auto px-4 sm:px-6">
+        <AnimatedSection className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+            Powerful Features, Beautiful Experience
+          </h2>
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+            Everything you need to streamline HR operations in one platform
+          </p>
+        </AnimatedSection>
+
+        <div className="space-y-16 sm:space-y-24">
+          {showcaseFeatures.map((feature, index) => (
+            <div
+              key={index}
+              className={`grid lg:grid-cols-2 gap-8 lg:gap-16 items-center ${
+                feature.reverse ? "lg:grid-flow-dense" : ""
+              }`}
+            >
+              <AnimatedSection
+                animation={feature.reverse ? "fade-left" : "fade-right"}
+                className={feature.reverse ? "lg:col-start-2" : ""}
+              >
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-hero opacity-10 blur-3xl rounded-full"></div>
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    className="relative w-full max-w-md mx-auto drop-shadow-xl"
+                  />
+                </div>
+              </AnimatedSection>
+
+              <AnimatedSection
+                animation={feature.reverse ? "fade-right" : "fade-left"}
+                delay={100}
+                className={feature.reverse ? "lg:col-start-1 lg:row-start-1" : ""}
+              >
+                <div className="space-y-6">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-foreground">
+                    {feature.title}
+                  </h3>
+                  <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+                    {feature.description}
+                  </p>
+                  <ul className="grid grid-cols-2 gap-3">
+                    {feature.features.map((item, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-sm sm:text-base">
+                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-foreground">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </AnimatedSection>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
