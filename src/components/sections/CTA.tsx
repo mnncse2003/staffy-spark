@@ -25,7 +25,7 @@ export const CTA = () => {
           <Button 
             size="lg" 
             variant="outline" 
-            className="border-2 border-white text-white hover:bg-white/10 w-full sm:w-auto"
+            className="border-2 border-primary-foreground text-primary-foreground bg-transparent hover:bg-primary-foreground/10 w-full sm:w-auto"
             onClick={() => scrollToSection('demo')}
           >
             Schedule Demo
