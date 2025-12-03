@@ -1,6 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Star } from "lucide-react";
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { GeometricDecorations } from "@/components/ui/GeometricDecorations";
 
 export const Testimonials = () => {
   const testimonials = [
@@ -49,20 +51,22 @@ export const Testimonials = () => {
   ];
 
   return (
-    <section id="testimonials" className="bg-muted py-12 sm:py-16 lg:py-24">
+    <section id="testimonials" className="relative bg-muted py-12 sm:py-16 lg:py-24 overflow-hidden">
+      <GeometricDecorations variant="default" />
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12 sm:mb-16">
+        <AnimatedSection className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Trusted by HR Teams Worldwide
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
             See what our customers have to say about their experience
           </p>
-        </div>
+        </AnimatedSection>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="relative grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="p-6 bg-card border-border">
+            <AnimatedSection key={index} animation="scale" delay={index * 100}>
+              <Card className="p-6 bg-card border-border h-full">
               <div className="flex gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <Star key={i} className="h-5 w-5 fill-primary text-primary" />
@@ -82,7 +86,8 @@ export const Testimonials = () => {
                   <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                 </div>
               </div>
-            </Card>
+              </Card>
+            </AnimatedSection>
           ))}
         </div>
       </div>

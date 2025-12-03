@@ -4,6 +4,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { GeometricDecorations } from "@/components/ui/GeometricDecorations";
 
 export const FAQ = () => {
   const faqs = [
@@ -42,18 +44,19 @@ export const FAQ = () => {
   ];
 
   return (
-    <section id="faq" className="bg-muted py-12 sm:py-16 lg:py-24">
+    <section id="faq" className="relative bg-muted py-12 sm:py-16 lg:py-24 overflow-hidden">
+      <GeometricDecorations variant="default" />
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12 sm:mb-16">
+        <AnimatedSection className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Frequently Asked Questions
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
             Everything you need to know about our HR management system
           </p>
-        </div>
+        </AnimatedSection>
 
-        <div className="max-w-3xl mx-auto">
+        <AnimatedSection animation="fade-up" delay={100} className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem 
@@ -70,7 +73,7 @@ export const FAQ = () => {
               </AccordionItem>
             ))}
           </Accordion>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   );
