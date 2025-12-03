@@ -99,25 +99,25 @@ export const RoleBasedFeatures = () => {
           </Card>
 
           <Card className="p-6 sm:p-8 bg-card border-border">
-            <div className="h-16 w-16 rounded-full bg-secondary/10 flex items-center justify-center mb-6">
-              <Briefcase className="h-8 w-8 text-secondary" />
+            <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+              <Briefcase className="h-8 w-8 text-primary" />
             </div>
             <h3 className="text-xl font-bold text-foreground mb-4">HOD</h3>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-4 w-4 text-secondary mt-0.5 flex-shrink-0" />
+                <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                 <span>Leave approvals for department only</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-4 w-4 text-secondary mt-0.5 flex-shrink-0" />
+                <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                 <span>View department employee records</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-4 w-4 text-secondary mt-0.5 flex-shrink-0" />
+                <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                 <span>Review leave history with comments</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle className="h-4 w-4 text-secondary mt-0.5 flex-shrink-0" />
+                <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                 <span>Track approval timestamps</span>
               </li>
             </ul>
