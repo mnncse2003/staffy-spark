@@ -10,9 +10,10 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24 overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       <GeometricDecorations variant="hero" />
-      <div className="relative grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <div className="relative grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         <AnimatedSection animation="fade-up" className="space-y-6 sm:space-y-8">
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-medium">
             <Zap className="h-3 w-3 sm:h-4 sm:w-4" />
@@ -66,6 +67,7 @@ export const Hero = () => {
             className="relative w-full max-w-xl mx-auto drop-shadow-2xl"
           />
         </AnimatedSection>
+        </div>
       </div>
     </section>
   );
