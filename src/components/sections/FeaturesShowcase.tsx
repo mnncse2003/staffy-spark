@@ -48,23 +48,23 @@ export const FeaturesShowcase = () => {
   ];
 
   return (
-    <section className="relative py-12 sm:py-16 lg:py-24 overflow-hidden">
+    <section className="relative py-10 sm:py-12 lg:py-16 overflow-hidden">
       <GeometricDecorations variant="features" />
       <div className="container mx-auto px-4 sm:px-6">
-        <AnimatedSection className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+        <AnimatedSection className="text-center mb-8 sm:mb-10">
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">
             Powerful Features, Beautiful Experience
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             Everything you need to streamline HR operations in one platform
           </p>
         </AnimatedSection>
 
-        <div className="space-y-16 sm:space-y-24">
+        <div className="space-y-8 sm:space-y-12">
           {showcaseFeatures.map((feature, index) => (
             <div
               key={index}
-              className={`grid lg:grid-cols-2 gap-8 lg:gap-16 items-center ${
+              className={`grid lg:grid-cols-2 gap-6 lg:gap-10 items-center ${
                 feature.reverse ? "lg:grid-flow-dense" : ""
               }`}
             >
@@ -72,12 +72,11 @@ export const FeaturesShowcase = () => {
                 animation={feature.reverse ? "fade-left" : "fade-right"}
                 className={feature.reverse ? "lg:col-start-2" : ""}
               >
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-hero opacity-10 blur-3xl rounded-full"></div>
+                <div className="relative flex justify-center">
                   <img
                     src={feature.image}
                     alt={feature.title}
-                    className="relative w-full max-w-md mx-auto drop-shadow-xl"
+                    className="relative w-40 sm:w-48 lg:w-56 drop-shadow-lg"
                   />
                 </div>
               </AnimatedSection>
@@ -87,17 +86,17 @@ export const FeaturesShowcase = () => {
                 delay={100}
                 className={feature.reverse ? "lg:col-start-1 lg:row-start-1" : ""}
               >
-                <div className="space-y-6">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-foreground">
+                <div className="space-y-3">
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground">
                     {feature.title}
                   </h3>
-                  <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                     {feature.description}
                   </p>
-                  <ul className="grid grid-cols-2 gap-3">
+                  <ul className="grid grid-cols-2 gap-2">
                     {feature.features.map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-sm sm:text-base">
-                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
+                      <li key={idx} className="flex items-center gap-2 text-xs sm:text-sm">
+                        <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
                         <span className="text-foreground">{item}</span>
                       </li>
                     ))}
