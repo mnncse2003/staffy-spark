@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Play, Download, Calendar } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { GeometricDecorations } from "@/components/ui/GeometricDecorations";
+import { generatePdfGuide } from "@/lib/generatePdfGuide";
 
 export const Demo = () => {
   return (
@@ -40,7 +41,7 @@ export const Demo = () => {
               <Play className="h-4 w-4 mr-2" />
               Launch Demo
             </Button>
-            <Button variant="ghost" className="flex-1 sm:flex-initial text-sm sm:text-base">
+            <Button variant="ghost" className="flex-1 sm:flex-initial text-sm sm:text-base" onClick={generatePdfGuide}>
               <Download className="h-4 w-4 mr-2" />
               <span className="hidden sm:inline">Get PDF Guide</span>
               <span className="sm:hidden">PDF Guide</span>
