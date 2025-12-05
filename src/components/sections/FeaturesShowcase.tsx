@@ -60,40 +60,32 @@ export const FeaturesShowcase = () => {
           </p>
         </AnimatedSection>
 
-        <div className="space-y-8 sm:space-y-12">
+        <div className="space-y-10 sm:space-y-14">
           {showcaseFeatures.map((feature, index) => (
-            <div
-              key={index}
-              className={`grid lg:grid-cols-2 gap-6 lg:gap-10 items-center ${
-                feature.reverse ? "lg:grid-flow-dense" : ""
-              }`}
-            >
-              <AnimatedSection
-                animation={feature.reverse ? "fade-left" : "fade-right"}
-                className={feature.reverse ? "lg:col-start-2" : ""}
+            <AnimatedSection key={index} animation="fade-up" delay={index * 50}>
+              <div
+                className={`flex flex-col lg:flex-row items-center gap-8 lg:gap-12 ${
+                  feature.reverse ? "lg:flex-row-reverse" : ""
+                }`}
               >
-                <div className="relative flex justify-center">
+                {/* Image */}
+                <div className="flex-shrink-0 w-full lg:w-1/2 flex justify-center">
                   <img
                     src={feature.image}
                     alt={feature.title}
-                    className="relative w-40 sm:w-48 lg:w-56 drop-shadow-lg"
+                    className="w-48 sm:w-56 lg:w-64 drop-shadow-lg"
                   />
                 </div>
-              </AnimatedSection>
 
-              <AnimatedSection
-                animation={feature.reverse ? "fade-right" : "fade-left"}
-                delay={100}
-                className={feature.reverse ? "lg:col-start-1 lg:row-start-1" : ""}
-              >
-                <div className="space-y-3">
+                {/* Content */}
+                <div className="flex-1 w-full lg:w-1/2 space-y-4 text-center lg:text-left">
                   <h3 className="text-xl sm:text-2xl font-bold text-foreground">
                     {feature.title}
                   </h3>
                   <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                     {feature.description}
                   </p>
-                  <ul className="grid grid-cols-2 gap-2">
+                  <ul className="grid grid-cols-2 gap-2 justify-items-start mx-auto lg:mx-0 max-w-sm lg:max-w-none">
                     {feature.features.map((item, idx) => (
                       <li key={idx} className="flex items-center gap-2 text-xs sm:text-sm">
                         <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
@@ -102,8 +94,8 @@ export const FeaturesShowcase = () => {
                     ))}
                   </ul>
                 </div>
-              </AnimatedSection>
-            </div>
+              </div>
+            </AnimatedSection>
           ))}
         </div>
       </div>
