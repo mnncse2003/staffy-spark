@@ -7,18 +7,18 @@ import { generatePdfGuide } from "@/lib/generatePdfGuide";
 
 export const Demo = () => {
   return (
-    <section id="demo" className="relative container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24 overflow-hidden">
+    <section id="demo" className="relative container mx-auto px-4 sm:px-6 py-16 sm:py-20 lg:py-28 overflow-hidden">
       <GeometricDecorations variant="default" />
-      <AnimatedSection className="text-center mb-12 sm:mb-16">
-        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+      <AnimatedSection className="text-center mb-12 sm:mb-16 lg:mb-20">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
           See It In Action
         </h2>
-        <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+        <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
           Watch our interactive demo or schedule a personalized walkthrough with our team
         </p>
       </AnimatedSection>
 
-      <div className="relative grid lg:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
+      <div className="relative grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 max-w-6xl mx-auto">
         <AnimatedSection animation="fade-right" delay={100}>
           <Card className="p-6 sm:p-8 bg-card border-border h-full">
           <div className="aspect-video bg-muted rounded-lg mb-6 flex items-center justify-center relative overflow-hidden">

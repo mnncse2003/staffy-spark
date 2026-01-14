@@ -18,12 +18,12 @@ export const Comparison = () => {
   ];
 
   return (
-    <section id="comparison" className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24">
-      <div className="text-center mb-12 sm:mb-16">
-        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+    <section id="comparison" className="container mx-auto px-4 sm:px-6 py-16 sm:py-20 lg:py-28">
+      <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
           Why Choose Our HR System?
         </h2>
-        <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+        <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
           See how we compare to traditional HR management approaches
         </p>
       </div>
