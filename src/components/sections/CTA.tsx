@@ -9,12 +9,12 @@ export const CTA = () => {
   };
 
   return (
-    <section className="relative container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24 overflow-hidden">
+    <section className="relative container mx-auto px-4 sm:px-6 py-16 sm:py-20 lg:py-28 overflow-hidden">
       <GeometricDecorations variant="pricing" />
       <AnimatedSection animation="scale">
-        <Card className="p-6 sm:p-8 lg:p-12 bg-gradient-hero text-primary-foreground text-center shadow-elegant border-0">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Ready to Transform Your HR Operations?</h2>
-        <p className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 opacity-90 max-w-2xl mx-auto">
+        <Card className="p-8 sm:p-12 lg:p-16 bg-gradient-hero text-primary-foreground text-center shadow-elegant border-0">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">Ready to Transform Your HR Operations?</h2>
+        <p className="text-lg sm:text-xl lg:text-2xl mb-8 sm:mb-10 opacity-90 max-w-3xl mx-auto">
           Join hundreds of companies already using our platform to streamline their HR processes
         </p>
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">

@@ -63,24 +63,24 @@ export const Features = () => {
   ];
 
   return (
-    <section id="features" className="relative container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24 overflow-hidden">
+    <section id="features" className="relative container mx-auto px-4 sm:px-6 py-16 sm:py-20 lg:py-28 overflow-hidden">
       <GeometricDecorations variant="features" />
-      <AnimatedSection className="text-center mb-12 sm:mb-16">
-        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+      <AnimatedSection className="text-center mb-12 sm:mb-16 lg:mb-20">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
           Comprehensive HR Management Features
         </h2>
-        <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+        <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
           Built with React, TypeScript, and Firebase for a complete cloud-based HR solution
         </p>
       </AnimatedSection>
       
-      <div className="relative grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <div className="relative grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
         {features.map((feature, index) => (
           <AnimatedSection key={index} animation="fade-up" delay={index * 100}>
-            <Card className="p-5 sm:p-6 hover:shadow-elegant transition-smooth bg-card border-border h-full">
-              <feature.icon className="h-10 w-10 sm:h-12 sm:w-12 text-primary mb-4" />
-              <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2">{feature.title}</h3>
-              <p className="text-sm sm:text-base text-muted-foreground">{feature.description}</p>
+            <Card className="p-6 sm:p-8 hover:shadow-elegant transition-smooth bg-card border-border h-full">
+              <feature.icon className="h-12 w-12 text-primary mb-5" />
+              <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-3">{feature.title}</h3>
+              <p className="text-base text-muted-foreground leading-relaxed">{feature.description}</p>
             </Card>
           </AnimatedSection>
         ))}

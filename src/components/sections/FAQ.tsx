@@ -44,14 +44,14 @@ export const FAQ = () => {
   ];
 
   return (
-    <section id="faq" className="relative bg-muted py-12 sm:py-16 lg:py-24 overflow-hidden">
+    <section id="faq" className="relative bg-muted py-16 sm:py-20 lg:py-28 overflow-hidden">
       <GeometricDecorations variant="default" />
       <div className="container mx-auto px-4 sm:px-6">
-        <AnimatedSection className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+        <AnimatedSection className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
             Frequently Asked Questions
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
             Everything you need to know about our HR management system
           </p>
         </AnimatedSection>

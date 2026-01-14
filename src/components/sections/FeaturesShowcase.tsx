@@ -48,23 +48,23 @@ export const FeaturesShowcase = () => {
   ];
 
   return (
-    <section className="relative py-10 sm:py-12 lg:py-16 overflow-hidden">
+    <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
       <GeometricDecorations variant="features" />
       <div className="container mx-auto px-4 sm:px-6">
-        <AnimatedSection className="text-center mb-8 sm:mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">
+        <AnimatedSection className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
             Powerful Features, Beautiful Experience
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
             Everything you need to streamline HR operations in one platform
           </p>
         </AnimatedSection>
 
-        <div className="space-y-10 sm:space-y-14">
+        <div className="space-y-16 sm:space-y-20 lg:space-y-28">
           {showcaseFeatures.map((feature, index) => (
             <AnimatedSection key={index} animation="fade-up" delay={index * 50}>
               <div
-                className={`flex flex-col lg:flex-row items-center gap-8 lg:gap-12 ${
+                className={`flex flex-col lg:flex-row items-center gap-10 lg:gap-16 ${
                   feature.reverse ? "lg:flex-row-reverse" : ""
                 }`}
               >
@@ -73,22 +73,22 @@ export const FeaturesShowcase = () => {
                   <img
                     src={feature.image}
                     alt={feature.title}
-                    className="w-48 sm:w-56 lg:w-64 drop-shadow-lg"
+                    className="w-56 sm:w-64 lg:w-80 drop-shadow-lg"
                   />
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 w-full lg:w-1/2 space-y-4 text-center lg:text-left">
-                  <h3 className="text-xl sm:text-2xl font-bold text-foreground">
+                <div className="flex-1 w-full lg:w-1/2 space-y-5 sm:space-y-6 text-center lg:text-left">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground">
                     {feature.title}
                   </h3>
-                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                     {feature.description}
                   </p>
-                  <ul className="grid grid-cols-2 gap-2 justify-items-start mx-auto lg:mx-0 max-w-sm lg:max-w-none">
+                  <ul className="grid grid-cols-2 gap-3 sm:gap-4 justify-items-start mx-auto lg:mx-0 max-w-md lg:max-w-none">
                     {feature.features.map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-xs sm:text-sm">
-                        <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                      <li key={idx} className="flex items-center gap-2 text-sm sm:text-base">
+                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
                         <span className="text-foreground">{item}</span>
                       </li>
                     ))}

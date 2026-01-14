@@ -5,19 +5,19 @@ import { GeometricDecorations } from "@/components/ui/GeometricDecorations";
 
 export const RoleBasedFeatures = () => {
   return (
-    <section className="relative bg-muted py-12 sm:py-16 lg:py-24 overflow-hidden">
+    <section className="relative bg-muted py-16 sm:py-20 lg:py-28 overflow-hidden">
       <GeometricDecorations variant="features" />
       <div className="container mx-auto px-4 sm:px-6">
-        <AnimatedSection className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+        <AnimatedSection className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
             Five User Roles with Specific Permissions
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
             Role-based access control for Super Admin, HR, Staff, HOD, and Intern users
           </p>
         </AnimatedSection>
 
-        <div className="relative grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="relative grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
           <AnimatedSection animation="fade-up" delay={0}>
             <Card className="p-6 sm:p-8 bg-card border-border h-full">
             <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
