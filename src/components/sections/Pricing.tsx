@@ -1,10 +1,16 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Loader2 } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { GeometricDecorations } from "@/components/ui/GeometricDecorations";
+import { initiatePayment, planPrices } from "@/lib/razorpay";
+import { useToast } from "@/hooks/use-toast";
 
 export const Pricing = () => {
+  const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
+  const { toast } = useToast();
+
   const plans = [
     {
       name: "Starter",
@@ -51,6 +57,48 @@ export const Pricing = () => {
     }
   ];
 
+  const handleGetStarted = async (planName: string) => {
+    const plan = planPrices[planName];
+    
+    if (!plan) {
+      // Enterprise plan - contact sales
+      window.location.href = "mailto:sales@hrms.com?subject=Enterprise Plan Inquiry";
+      return;
+    }
+
+    setLoadingPlan(planName);
+
+    try {
+      await initiatePayment({
+        planName: plan.name,
+        amount: plan.priceINR,
+        currency: 'INR',
+        onSuccess: (response) => {
+          setLoadingPlan(null);
+          toast({
+            title: "Payment Successful!",
+            description: `Thank you for subscribing to the ${planName} plan. Payment ID: ${response.razorpay_payment_id}`,
+          });
+        },
+        onError: (error) => {
+          setLoadingPlan(null);
+          toast({
+            title: "Payment Failed",
+            description: error.message || "Something went wrong. Please try again.",
+            variant: "destructive",
+          });
+        },
+      });
+    } catch (error) {
+      setLoadingPlan(null);
+      toast({
+        title: "Error",
+        description: "Failed to initiate payment. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <section id="pricing" className="relative container mx-auto px-4 sm:px-6 py-16 sm:py-20 lg:py-28 overflow-hidden">
       <GeometricDecorations variant="pricing" />
@@ -67,7 +115,6 @@ export const Pricing = () => {
         {plans.map((plan, index) => (
           <AnimatedSection key={plan.name} animation="fade-up" delay={index * 150}>
           <Card 
-            key={plan.name} 
             className={`p-6 sm:p-8 ${
               plan.highlighted 
                 ? 'bg-gradient-hero text-primary-foreground shadow-elegant border-0 md:scale-105' 
@@ -91,8 +138,8 @@ export const Pricing = () => {
               )}
             </div>
             <ul className="space-y-3 mb-8">
-              {plan.features.map((feature, index) => (
-                <li key={index} className="flex items-start gap-2">
+              {plan.features.map((feature, featureIndex) => (
+                <li key={featureIndex} className="flex items-start gap-2">
                   <CheckCircle className={`h-5 w-5 mt-0.5 flex-shrink-0 ${
                     plan.highlighted ? '' : 'text-primary'
                   }`} />
@@ -107,8 +154,17 @@ export const Pricing = () => {
                   : 'bg-gradient-hero text-primary-foreground hover:opacity-90'
               }`}
               size="lg"
+              onClick={() => handleGetStarted(plan.name)}
+              disabled={loadingPlan === plan.name}
             >
-              {plan.price === "Custom" ? "Contact Sales" : "Get Started"}
+              {loadingPlan === plan.name ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Processing...
+                </>
+              ) : (
+                plan.price === "Custom" ? "Contact Sales" : "Get Started"
+              )}
             </Button>
           </Card>
           </AnimatedSection>
