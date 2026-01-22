@@ -10,9 +10,9 @@ const RAZORPAY_KEY_ID = "rzp_test_S6VSjQt222ctmL";
 
 // Firebase config for secondary auth (to prevent auto-login)
 const FIREBASE_CONFIG = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID"
+  apiKey: "AIzaSyBFHgyqk16_cxG1o7EF2OQ8ksxsjA1ENKk",
+  authDomain: "pq-hub-906ed.firebaseapp.com",
+  projectId: "pq-hub-906ed"
 };
 
 export interface RazorpayPlan {
