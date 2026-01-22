@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle, Loader2 } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { GeometricDecorations } from "@/components/ui/GeometricDecorations";
 import { initiatePayment, planPrices, OrganizationData } from "@/lib/razorpay";
@@ -12,13 +13,32 @@ import { PurchaseDialog, PurchaseFormData } from "./PurchaseDialog";
 export const Pricing = () => {
   const navigate = useNavigate();
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
-  const [selectedPlan, setSelectedPlan] = useState<{ name: string; price: string } | null>(null);
+  const [selectedPlan, setSelectedPlan] = useState<{ name: string; price: string; isYearly: boolean } | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isYearly, setIsYearly] = useState(false);
   const { toast } = useToast();
+
+  // Monthly prices
+  const monthlyPrices = {
+    Starter: 4099,
+    Professional: 8299,
+  };
+
+  // Yearly prices (2 months free - ~17% discount)
+  const yearlyPrices = {
+    Starter: 40990, // 4099 * 10 months
+    Professional: 82990, // 8299 * 10 months
+  };
+
+  const formatPrice = (price: number) => {
+    return price.toLocaleString('en-IN');
+  };
+
   const plans = [
     {
       name: "Starter",
-      price: "4,099",
+      monthlyPrice: monthlyPrices.Starter,
+      yearlyPrice: yearlyPrices.Starter,
       description: "Perfect for small teams",
       features: [
         "Up to 50 employees",
@@ -31,7 +51,8 @@ export const Pricing = () => {
     },
     {
       name: "Professional",
-      price: "8,299",
+      monthlyPrice: monthlyPrices.Professional,
+      yearlyPrice: yearlyPrices.Professional,
       description: "For growing companies",
       features: [
         "Up to 200 employees",
@@ -46,7 +67,8 @@ export const Pricing = () => {
     },
     {
       name: "Enterprise",
-      price: "Custom",
+      monthlyPrice: 0,
+      yearlyPrice: 0,
       description: "For large organizations",
       features: [
         "Unlimited employees",
@@ -61,25 +83,30 @@ export const Pricing = () => {
     }
   ];
 
-  const handleGetStarted = (planName: string, planPrice: string) => {
-    const plan = planPrices[planName];
-    
-    if (!plan) {
+  const handleGetStarted = (planName: string) => {
+    if (planName === "Enterprise") {
       // Enterprise plan - contact sales
       window.location.href = "mailto:sales@hrms.com?subject=Enterprise Plan Inquiry";
       return;
     }
 
+    const price = isYearly 
+      ? yearlyPrices[planName as keyof typeof yearlyPrices]
+      : monthlyPrices[planName as keyof typeof monthlyPrices];
+
     // Open the purchase dialog to collect details
-    setSelectedPlan({ name: planName, price: planPrice });
+    setSelectedPlan({ name: planName, price: formatPrice(price), isYearly });
     setIsDialogOpen(true);
   };
 
   const handlePurchaseSubmit = async (formData: PurchaseFormData) => {
     if (!selectedPlan) return;
 
-    const plan = planPrices[selectedPlan.name];
-    if (!plan) return;
+    const amount = selectedPlan.isYearly 
+      ? yearlyPrices[selectedPlan.name as keyof typeof yearlyPrices]
+      : monthlyPrices[selectedPlan.name as keyof typeof monthlyPrices];
+
+    if (!amount) return;
 
     setLoadingPlan(selectedPlan.name);
 
@@ -93,10 +120,14 @@ export const Pricing = () => {
       logoFile: formData.logoFile,
     };
 
+    const planDisplayName = selectedPlan.isYearly 
+      ? `${selectedPlan.name} (Yearly)` 
+      : selectedPlan.name;
+
     try {
       await initiatePayment({
-        planName: plan.name,
-        amount: plan.priceINR,
+        planName: planDisplayName,
+        amount: amount,
         currency: 'INR',
         orgData,
         onSuccess: (response, subscriptionId, orgResult) => {
@@ -110,7 +141,7 @@ export const Pricing = () => {
               organizationName: orgData.organizationName,
               email: orgData.email,
               password: orgData.hrAdminPan.toUpperCase(),
-              planName: plan.name,
+              planName: planDisplayName,
               hrAdminName: orgData.hrAdminName,
               orgId: orgResult.orgId,
             }
@@ -143,9 +174,29 @@ export const Pricing = () => {
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 sm:mb-8">
             Simple, Transparent Pricing
           </h2>
-          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8">
             Choose the plan that fits your organization's needs
           </p>
+          
+          {/* Billing Toggle */}
+          <div className="flex items-center justify-center gap-4">
+            <span className={`text-lg font-medium transition-colors ${!isYearly ? 'text-foreground' : 'text-muted-foreground'}`}>
+              Monthly
+            </span>
+            <Switch
+              checked={isYearly}
+              onCheckedChange={setIsYearly}
+              className="data-[state=checked]:bg-primary"
+            />
+            <span className={`text-lg font-medium transition-colors ${isYearly ? 'text-foreground' : 'text-muted-foreground'}`}>
+              Yearly
+            </span>
+            {isYearly && (
+              <span className="ml-2 px-3 py-1 text-sm font-semibold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-full">
+                Save 2 months!
+              </span>
+            )}
+          </div>
         </AnimatedSection>
 
         <div className="relative grid md:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 max-w-6xl mx-auto">
@@ -165,13 +216,22 @@ export const Pricing = () => {
                   {plan.description}
                 </p>
                 <div className="mb-8">
-                  <span className="text-5xl font-bold">
-                    {plan.price === "Custom" ? plan.price : `₹${plan.price}`}
-                  </span>
-                  {plan.price !== "Custom" && (
-                    <span className={plan.highlighted ? 'opacity-90' : 'text-muted-foreground'}>
-                      /month
-                    </span>
+                  {plan.name === "Enterprise" ? (
+                    <span className="text-5xl font-bold">Custom</span>
+                  ) : (
+                    <>
+                      <span className="text-5xl font-bold">
+                        ₹{formatPrice(isYearly ? plan.yearlyPrice : plan.monthlyPrice)}
+                      </span>
+                      <span className={plan.highlighted ? 'opacity-90' : 'text-muted-foreground'}>
+                        /{isYearly ? 'year' : 'month'}
+                      </span>
+                      {isYearly && (
+                        <div className={`text-sm mt-2 ${plan.highlighted ? 'opacity-80' : 'text-muted-foreground'}`}>
+                          (₹{formatPrice(Math.round(plan.yearlyPrice / 12))}/month)
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
                 <ul className="space-y-4 mb-10">
@@ -191,7 +251,7 @@ export const Pricing = () => {
                       : 'bg-gradient-hero text-primary-foreground hover:opacity-90'
                   }`}
                   size="lg"
-                  onClick={() => handleGetStarted(plan.name, plan.price)}
+                  onClick={() => handleGetStarted(plan.name)}
                   disabled={loadingPlan === plan.name}
                 >
                   {loadingPlan === plan.name ? (
@@ -200,7 +260,7 @@ export const Pricing = () => {
                       Processing...
                     </>
                   ) : (
-                    plan.price === "Custom" ? "Contact Sales" : "Get Started"
+                    plan.name === "Enterprise" ? "Contact Sales" : "Get Started"
                   )}
                 </Button>
               </Card>
