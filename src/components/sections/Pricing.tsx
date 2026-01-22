@@ -18,7 +18,7 @@ export const Pricing = () => {
   const plans = [
     {
       name: "Starter",
-      price: "49",
+      price: "4,099",
       description: "Perfect for small teams",
       features: [
         "Up to 50 employees",
@@ -31,7 +31,7 @@ export const Pricing = () => {
     },
     {
       name: "Professional",
-      price: "99",
+      price: "8,299",
       description: "For growing companies",
       features: [
         "Up to 200 employees",
@@ -166,7 +166,7 @@ export const Pricing = () => {
                 </p>
                 <div className="mb-8">
                   <span className="text-5xl font-bold">
-                    {plan.price === "Custom" ? plan.price : `$${plan.price}`}
+                    {plan.price === "Custom" ? plan.price : `₹${plan.price}`}
                   </span>
                   {plan.price !== "Custom" && (
                     <span className={plan.highlighted ? 'opacity-90' : 'text-muted-foreground'}>
