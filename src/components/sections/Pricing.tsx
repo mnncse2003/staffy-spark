@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle, Loader2 } from "lucide-react";
@@ -9,11 +10,11 @@ import { useToast } from "@/hooks/use-toast";
 import { PurchaseDialog, PurchaseFormData } from "./PurchaseDialog";
 
 export const Pricing = () => {
+  const navigate = useNavigate();
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
   const [selectedPlan, setSelectedPlan] = useState<{ name: string; price: string } | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { toast } = useToast();
-
   const plans = [
     {
       name: "Starter",
@@ -103,20 +104,17 @@ export const Pricing = () => {
           setIsDialogOpen(false);
           setSelectedPlan(null);
           
-          if (orgResult.success) {
-            toast({
-              title: "🎉 Payment Successful!",
-              description: orgResult.message,
-              duration: 10000,
-            });
-          } else {
-            toast({
-              title: "Payment Successful",
-              description: orgResult.message,
-              variant: "destructive",
-              duration: 10000,
-            });
-          }
+          // Navigate to success page with organization details
+          navigate('/purchase-success', {
+            state: {
+              organizationName: orgData.organizationName,
+              email: orgData.email,
+              password: orgData.hrAdminPan.toUpperCase(),
+              planName: plan.name,
+              hrAdminName: orgData.hrAdminName,
+              orgId: orgResult.orgId,
+            }
+          });
         },
         onError: (error) => {
           setLoadingPlan(null);
