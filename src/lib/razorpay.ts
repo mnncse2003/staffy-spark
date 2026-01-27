@@ -299,3 +299,135 @@ export const initiatePayment = async ({
 
   razorpay.open();
 };
+
+// Renewal payment options - for existing organizations
+interface RenewalPaymentOptions {
+  planName: string;
+  amount: number;
+  currency?: string;
+  organizationId: string;
+  organizationName: string;
+  email: string;
+  userName: string;
+  onSuccess?: (response: any) => void;
+  onError?: (error: any) => void;
+}
+
+// Initialize renewal payment with Razorpay
+export const initiateRenewalPayment = async ({
+  planName,
+  amount,
+  currency = 'INR',
+  organizationId,
+  organizationName,
+  email,
+  userName,
+  onSuccess,
+  onError,
+}: RenewalPaymentOptions): Promise<void> => {
+  const isLoaded = await loadRazorpayScript();
+
+  if (!isLoaded) {
+    onError?.({ message: 'Failed to load Razorpay SDK' });
+    return;
+  }
+
+  if (!RAZORPAY_KEY_ID) {
+    onError?.({ message: 'Razorpay Key ID not configured' });
+    return;
+  }
+
+  // Create pending subscription renewal in Firebase
+  const subscriptionRef = await addDoc(collection(db, 'subscriptions'), {
+    planName,
+    amount,
+    currency,
+    status: 'pending',
+    type: 'renewal',
+    createdAt: serverTimestamp(),
+    email,
+    organizationId,
+    organizationName,
+  });
+
+  const options = {
+    key: RAZORPAY_KEY_ID,
+    amount: amount * 100,
+    currency,
+    name: 'HR Management System',
+    description: `${planName} Renewal`,
+    image: '/favicon.ico',
+    prefill: {
+      name: userName,
+      email,
+    },
+    notes: {
+      planName,
+      subscriptionId: subscriptionRef.id,
+      organizationId,
+      type: 'renewal',
+    },
+    theme: {
+      color: '#7c3aed',
+    },
+    handler: async (response: any) => {
+      try {
+        // Update subscription status
+        await updateDoc(doc(db, 'subscriptions', subscriptionRef.id), {
+          paymentId: response.razorpay_payment_id,
+          orderId: response.razorpay_order_id || null,
+          signature: response.razorpay_signature || null,
+          status: 'success',
+          completedAt: serverTimestamp(),
+        });
+
+        // Update organization subscription
+        const isYearly = planName.includes('Yearly');
+        const newStartDate = new Date();
+        const newEndDate = new Date();
+        if (isYearly) {
+          newEndDate.setFullYear(newEndDate.getFullYear() + 1);
+        } else {
+          newEndDate.setMonth(newEndDate.getMonth() + 1);
+        }
+
+        await updateDoc(doc(db, 'organizations', organizationId), {
+          subscriptionStatus: 'active',
+          subscriptionStartDate: newStartDate.toISOString(),
+          lastPaymentId: response.razorpay_payment_id,
+          lastPaymentDate: serverTimestamp(),
+        });
+
+        onSuccess?.(response);
+      } catch (error) {
+        console.error('Error processing renewal:', error);
+        onError?.(error);
+      }
+    },
+    modal: {
+      ondismiss: async () => {
+        await updateDoc(doc(db, 'subscriptions', subscriptionRef.id), {
+          status: 'cancelled',
+          cancelledAt: serverTimestamp(),
+        });
+      },
+    },
+  };
+
+  const razorpay = new window.Razorpay(options);
+
+  razorpay.on('payment.failed', async (response: any) => {
+    await updateDoc(doc(db, 'subscriptions', subscriptionRef.id), {
+      status: 'failed',
+      errorCode: response.error.code,
+      errorDescription: response.error.description,
+      errorSource: response.error.source,
+      errorReason: response.error.reason,
+      failedAt: serverTimestamp(),
+    });
+
+    onError?.(response.error);
+  });
+
+  razorpay.open();
+};

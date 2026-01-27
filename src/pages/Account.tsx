@@ -5,9 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { initiatePayment, OrganizationData } from "@/lib/razorpay";
-import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { initiateRenewalPayment } from "@/lib/razorpay";
 import { 
   Loader2, 
   LogOut, 
@@ -96,38 +94,16 @@ const Account = () => {
   const handleRenewSubscription = async () => {
     setIsRenewing(true);
 
-    const orgData: OrganizationData = {
-      organizationName: userData.organizationName,
-      email: userData.email,
-      hrAdminName: userData.name,
-      hrAdminEmployeeCode: "",
-      hrAdminPan: "",
-      logoFile: null,
-    };
-
     try {
-      await initiatePayment({
-        planName: `${userData.subscriptionPlan} - Renewal`,
+      await initiateRenewalPayment({
+        planName: userData.subscriptionPlan || "Starter",
         amount: getRenewalAmount(),
         currency: "INR",
-        orgData,
-        onSuccess: async (response) => {
-          // Update subscription in Firestore
-          const isYearly = userData.subscriptionPlan?.includes("Yearly");
-          const newEndDate = new Date();
-          if (isYearly) {
-            newEndDate.setFullYear(newEndDate.getFullYear() + 1);
-          } else {
-            newEndDate.setMonth(newEndDate.getMonth() + 1);
-          }
-
-          await updateDoc(doc(db, "organizations", userData.organizationId), {
-            subscriptionStatus: "active",
-            subscriptionStartDate: new Date().toISOString(),
-            lastPaymentId: response.razorpay_payment_id,
-            lastPaymentDate: serverTimestamp(),
-          });
-
+        organizationId: userData.organizationId,
+        organizationName: userData.organizationName,
+        email: userData.email,
+        userName: userData.name,
+        onSuccess: async () => {
           await refreshUserData();
           setIsRenewing(false);
           
