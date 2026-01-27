@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Building2, Menu, X } from "lucide-react";
+import { Building2, Menu, User } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export const Navigation = () => {
@@ -27,6 +28,12 @@ export const Navigation = () => {
             <Button variant="ghost" onClick={() => scrollToSection('testimonials')}>Testimonials</Button>
             <Button variant="ghost" onClick={() => scrollToSection('team')}>Team</Button>
             <Button variant="ghost" onClick={() => scrollToSection('faq')}>FAQ</Button>
+            <Link to="/login">
+              <Button variant="outline" className="gap-2">
+                <User className="h-4 w-4" />
+                Login
+              </Button>
+            </Link>
             <Button 
               className="bg-gradient-hero text-primary-foreground shadow-elegant hover:opacity-90 transition-smooth"
               onClick={() => scrollToSection('pricing')}
@@ -49,6 +56,12 @@ export const Navigation = () => {
                 <Button variant="ghost" onClick={() => scrollToSection('testimonials')} className="justify-start">Testimonials</Button>
                 <Button variant="ghost" onClick={() => scrollToSection('team')} className="justify-start">Team</Button>
                 <Button variant="ghost" onClick={() => scrollToSection('faq')} className="justify-start">FAQ</Button>
+                <Link to="/login" onClick={() => setIsOpen(false)}>
+                  <Button variant="outline" className="w-full gap-2">
+                    <User className="h-4 w-4" />
+                    Login
+                  </Button>
+                </Link>
                 <Button 
                   className="bg-gradient-hero text-primary-foreground shadow-elegant hover:opacity-90 transition-smooth"
                   onClick={() => scrollToSection('pricing')}
