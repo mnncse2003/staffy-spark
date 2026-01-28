@@ -1,12 +1,41 @@
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Play, Download, Calendar } from "lucide-react";
+import { Play, Download, Calendar, X } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { GeometricDecorations } from "@/components/ui/GeometricDecorations";
 import { generatePdfGuide } from "@/lib/generatePdfGuide";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import demoVideo from "@/assets/demo-video.mp4";
 
 export const Demo = () => {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
   return (
+    <>
+      <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
+        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-0">
+          <DialogTitle className="sr-only">Demo Video</DialogTitle>
+          <div className="relative">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-2 right-2 z-10 text-white hover:bg-white/20"
+              onClick={() => setIsVideoOpen(false)}
+            >
+              <X className="h-5 w-5" />
+            </Button>
+            <video
+              src={demoVideo}
+              controls
+              autoPlay
+              className="w-full aspect-video"
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </DialogContent>
+      </Dialog>
     <section id="demo" className="relative container mx-auto px-4 sm:px-6 py-16 sm:py-20 lg:py-28 overflow-hidden">
       <GeometricDecorations variant="default" />
       <AnimatedSection className="text-center mb-12 sm:mb-16 lg:mb-20">
@@ -26,6 +55,7 @@ export const Demo = () => {
             <Button 
               size="lg" 
               className="relative z-10 bg-gradient-hero text-primary-foreground shadow-elegant hover:opacity-90 text-sm sm:text-base"
+              onClick={() => setIsVideoOpen(true)}
             >
               <Play className="h-5 w-5 sm:h-6 sm:w-6 mr-2" />
               <span className="hidden sm:inline">Watch Demo Video</span>
@@ -85,5 +115,6 @@ export const Demo = () => {
         </AnimatedSection>
       </div>
     </section>
+    </>
   );
 };
