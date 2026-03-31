@@ -11,38 +11,38 @@ import illustrationBirthday from "@/assets/illustration-birthday.png";
 export const FeaturesShowcase = () => {
   const showcaseFeatures = [
     {
-      title: "Employee Management",
-      description: "Complete employee lifecycle management with profile updates, document uploads, and Excel import for bulk data.",
+      title: "Employee Management & Profiles",
+      description: "Complete employee lifecycle management with comprehensive profiles, document uploads (PAN, Aadhar, qualifications), Excel import for bulk data, and cross-organization employee transfers.",
       image: illustrationEmployees,
-      features: ["Profile Management", "Document Uploads", "Excel Import", "Family & Experience Details"],
+      features: ["Profile & Document Management", "Excel Bulk Import", "Cross-Org Transfers", "Block/Unblock Accounts"],
       reverse: false,
     },
     {
-      title: "Attendance Tracking",
-      description: "Real-time punch-in/out with edit requests for forgotten punch-outs and comprehensive reporting.",
+      title: "Smart Attendance & Face Recognition",
+      description: "Real-time punch-in/out with edit requests, plus AI-powered face recognition kiosk using face-api.js with proximity validation, audio feedback, and 60-second cooldown.",
       image: illustrationAttendance,
-      features: ["Punch In/Out", "Edit Requests", "Daily Reports", "Automated Tracking"],
+      features: ["Punch In/Out", "Face Recognition Kiosk", "Edit Requests", "Attendance Reports"],
       reverse: true,
     },
     {
-      title: "Leave Management",
-      description: "12+ leave types with gender-specific options. Approval workflows routing to HR and HOD.",
+      title: "Advanced Leave Management",
+      description: "14+ leave types including PL, SL, CL, Maternity, Paternity, Sabbatical, WFH, Comp Off, and more. Gender-specific options with multi-level approval routing to HR and HOD.",
       image: illustrationLeave,
-      features: ["12+ Leave Types", "Approval Workflows", "Balance Tracking", "Leave History"],
+      features: ["14+ Leave Types", "Multi-Level Approvals", "Gender-Specific Options", "Holiday-Aware Calculation"],
       reverse: false,
     },
     {
-      title: "Salary Slip Generation",
-      description: "Automated monthly salary slips with customizable allowances and downloadable PDF reports.",
+      title: "Salary Slips & Self-Service Portal",
+      description: "Automated salary slip generation with customizable allowances and deductions. Self-service portal for tax declarations, investment proofs, reimbursements, and loan applications.",
       image: illustrationSalary,
-      features: ["Auto Generation", "Custom Allowances", "Tax Deductions", "PDF Download"],
+      features: ["Auto Salary Slips", "Tax Declarations", "Reimbursements", "Loan Applications"],
       reverse: true,
     },
     {
-      title: "Birthday Wishes",
-      description: "View colleagues with birthdays, send personalized wishes, and build team culture.",
+      title: "Chat, Helpdesk & Team Culture",
+      description: "Real-time messaging with file attachments, floating chat widget, helpdesk ticketing with lifecycle tracking, birthday wishes with personalized templates, and system-wide notifications.",
       image: illustrationBirthday,
-      features: ["Birthday Calendar", "Custom Templates", "Team Notifications", "Culture Building"],
+      features: ["Real-Time Chat", "Helpdesk Tickets", "Birthday Wishes", "Notifications Center"],
       reverse: false,
     },
   ];
@@ -68,7 +68,6 @@ export const FeaturesShowcase = () => {
                   feature.reverse ? "lg:flex-row-reverse" : ""
                 }`}
               >
-                {/* Image */}
                 <div className="flex-shrink-0 w-full lg:w-1/2 flex justify-center">
                   <img
                     src={feature.image}
@@ -76,8 +75,6 @@ export const FeaturesShowcase = () => {
                     className="w-56 sm:w-64 lg:w-80 drop-shadow-lg"
                   />
                 </div>
-
-                {/* Content */}
                 <div className="flex-1 w-full lg:w-1/2 space-y-5 sm:space-y-6 text-center lg:text-left">
                   <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground">
                     {feature.title}
