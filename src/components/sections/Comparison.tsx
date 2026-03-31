@@ -5,23 +5,29 @@ export const Comparison = () => {
   const features = [
     { name: "Employee Management", us: true, manual: false, legacy: true },
     { name: "Automated Attendance Tracking", us: true, manual: false, legacy: false },
-    { name: "Multi-level Leave Approvals", us: true, manual: false, legacy: false },
+    { name: "Face Recognition Attendance", us: true, manual: false, legacy: false },
+    { name: "Multi-level Leave Approvals (14+ types)", us: true, manual: false, legacy: false },
     { name: "Salary Slip Generation", us: true, manual: false, legacy: true },
-    { name: "Role-based Access Control", us: true, manual: false, legacy: false },
-    { name: "Real-time Notifications", us: true, manual: false, legacy: false },
-    { name: "Birthday Wishes System", us: true, manual: false, legacy: false },
+    { name: "Role-based Access (5 Roles)", us: true, manual: false, legacy: false },
+    { name: "Real-time Chat & Messaging", us: true, manual: false, legacy: false },
+    { name: "Helpdesk & Ticketing System", us: true, manual: false, legacy: false },
+    { name: "Exit Management & Clearance", us: true, manual: false, legacy: false },
+    { name: "Shift Management", us: true, manual: false, legacy: true },
+    { name: "Self-Service Portal", us: true, manual: false, legacy: false },
+    { name: "Device Security & Session Control", us: true, manual: false, legacy: false },
+    { name: "Multi-Organization Support", us: true, manual: false, legacy: false },
     { name: "Excel Import/Export", us: true, manual: false, legacy: true },
+    { name: "HR Analytics Dashboard", us: true, manual: false, legacy: false },
+    { name: "Birthday Wishes & Notifications", us: true, manual: false, legacy: false },
     { name: "Mobile Responsive", us: true, manual: false, legacy: false },
     { name: "Cloud-based Access", us: true, manual: false, legacy: false },
-    { name: "Customizable Reports", us: true, manual: false, legacy: true },
-    { name: "99.9% Uptime SLA", us: true, manual: false, legacy: false },
   ];
 
   return (
     <section id="comparison" className="container mx-auto px-4 sm:px-6 py-16 sm:py-20 lg:py-28">
       <div className="text-center mb-12 sm:mb-16 lg:mb-20">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
-          Why Choose Our HR System?
+          Why Choose ChronoStaff Suite?
         </h2>
         <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
           See how we compare to traditional HR management approaches
@@ -39,7 +45,7 @@ export const Comparison = () => {
                 <th className="text-left p-3 sm:p-6 font-semibold text-foreground text-sm sm:text-base">Feature</th>
                 <th className="p-3 sm:p-6 font-semibold text-center">
                   <div className="bg-gradient-hero text-primary-foreground px-2 sm:px-4 py-1 sm:py-2 rounded-lg inline-block text-xs sm:text-sm">
-                    Our System
+                    ChronoStaff
                   </div>
                 </th>
                 <th className="p-3 sm:p-6 font-semibold text-muted-foreground text-center text-xs sm:text-sm">Manual</th>

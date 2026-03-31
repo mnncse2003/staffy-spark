@@ -9,42 +9,42 @@ export const Testimonials = () => {
     {
       name: "Sarah Johnson",
       role: "HR Director, TechCorp",
-      content: "This HR system has transformed how we manage our 200+ employee workforce. The attendance tracking and leave management features are game-changers.",
+      content: "ChronoStaff Suite has transformed how we manage our 200+ workforce. The face recognition attendance and automated leave management saved us countless hours every week.",
       rating: 5,
       initials: "SJ"
     },
     {
       name: "Michael Chen",
       role: "CEO, StartupHub",
-      content: "Implementation was seamless, and our team adapted quickly. The automated salary slip generation alone saves us 10+ hours every month.",
+      content: "The real-time chat and helpdesk system has improved internal communication dramatically. Our HR team resolves employee queries 3x faster now.",
       rating: 5,
       initials: "MC"
     },
     {
       name: "Priya Sharma",
       role: "Operations Manager, GlobalTech",
-      content: "The role-based access control is perfect for our organizational structure. HODs can approve leaves while HR maintains full control.",
+      content: "Managing 3 organizations from one dashboard is incredible. The role-based access with 5 levels gives us perfect control over who sees what.",
       rating: 5,
       initials: "PS"
     },
     {
       name: "David Williams",
       role: "HR Manager, InnovateCo",
-      content: "Best investment we've made this year. The reporting features give us insights we never had before, and the support team is fantastic.",
+      content: "The exit management module handles everything — from resignation to experience certificate. The self-service portal reduced HR requests by 60%.",
       rating: 5,
       initials: "DW"
     },
     {
       name: "Lisa Martinez",
       role: "People Operations, GrowthLabs",
-      content: "Our employees love the user-friendly interface. The birthday wishes feature has created such a positive culture in our remote team.",
+      content: "Device security with fingerprinting and session control gives us peace of mind. The shift management feature was exactly what our factory teams needed.",
       rating: 5,
       initials: "LM"
     },
     {
       name: "James Anderson",
       role: "COO, ScaleUp Inc",
-      content: "We migrated from three different systems to this platform. The Excel import feature made the transition smooth and we were up and running in days.",
+      content: "We migrated from three systems to ChronoStaff. The Excel import made the transition smooth, and the HR analytics dashboard gives us insights we never had.",
       rating: 5,
       initials: "JA"
     }
@@ -59,7 +59,7 @@ export const Testimonials = () => {
             Trusted by HR Teams Worldwide
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
-            See what our customers have to say about their experience
+            See what our customers have to say about ChronoStaff Suite
           </p>
         </AnimatedSection>
 

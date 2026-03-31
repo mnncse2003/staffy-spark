@@ -17,7 +17,7 @@ export const Hero = () => {
         <AnimatedSection animation="fade-up" className="text-center mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 sm:mb-8">
             <Zap className="h-4 w-4" />
-            Streamline Your HR Operations
+            ChronoStaff Suite — Complete HR Operations
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight max-w-5xl mx-auto">
             Complete Multi-Organization{" "}
@@ -38,8 +38,9 @@ export const Hero = () => {
           
           <AnimatedSection animation="fade-left" delay={200} className="space-y-8 order-1 lg:order-2 text-center lg:text-left">
             <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-relaxed">
-              Streamline employee management, attendance tracking, leave requests, salary slips, and more 
-              across multiple organizations with our comprehensive cloud-based platform built with React, TypeScript, and Firebase.
+              Streamline employee management, attendance tracking, face recognition, leave requests, salary slips, 
+              exit management, helpdesk, real-time chat, shift management, and self-service portal 
+              across multiple organizations with our comprehensive cloud-based platform.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button 
@@ -73,8 +74,12 @@ export const Hero = () => {
               <p className="text-sm sm:text-base text-muted-foreground mt-2">Access Levels</p>
             </div>
             <div className="text-center">
-              <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">12+</p>
+              <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">14+</p>
               <p className="text-sm sm:text-base text-muted-foreground mt-2">Leave Types</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">25+</p>
+              <p className="text-sm sm:text-base text-muted-foreground mt-2">Modules</p>
             </div>
           </div>
         </AnimatedSection>
