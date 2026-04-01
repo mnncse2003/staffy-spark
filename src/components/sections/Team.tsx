@@ -25,7 +25,7 @@ export const Team = () => {
     },
     {
       name: "Aman Shandilya",
-      role: "Head of Product",
+      role: "Head of Product & CEO",
       bio: "Product leader with deep expertise in HR operations and user experience",
       initials: "HK"
     },
@@ -37,7 +37,7 @@ export const Team = () => {
     },
     {
       name: "Aman Kumar",
-      role: "Lead Designer",
+      role: "Lead Designer & Founder",
       bio: "Award-winning designer focused on intuitive, beautiful interfaces",
       initials: "AK"
     }
