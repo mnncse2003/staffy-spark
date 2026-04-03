@@ -56,6 +56,8 @@ export default {
       boxShadow: {
         'elegant': 'var(--shadow-elegant)',
         'card': 'var(--shadow-card)',
+        'glow': 'var(--shadow-glow)',
+        'glow-accent': 'var(--shadow-glow-accent)',
       },
       transitionProperty: {
         'smooth': 'var(--transition-smooth)',

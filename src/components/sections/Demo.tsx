@@ -13,25 +13,14 @@ export const Demo = () => {
   return (
     <>
       <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
-        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-0">
+        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-background border-border/50">
           <DialogTitle className="sr-only">Demo Video</DialogTitle>
           <div className="relative">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute top-2 right-2 z-10 text-white hover:bg-white/20"
-              onClick={() => setIsVideoOpen(false)}
-            >
+            <Button variant="ghost" size="icon" className="absolute top-2 right-2 z-10 text-foreground hover:bg-muted" onClick={() => setIsVideoOpen(false)}>
               <X className="h-5 w-5" />
             </Button>
             <div className="aspect-video">
-              <iframe
-                src="https://www.youtube.com/embed/BZSZzJ3fXJ0?si=rRARgorwEoJKJ5-P&autoplay=1"
-                title="Demo Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              />
+              <iframe src="https://www.youtube.com/embed/BZSZzJ3fXJ0?si=rRARgorwEoJKJ5-P&autoplay=1" title="Demo Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full h-full" />
             </div>
           </div>
         </DialogContent>
@@ -41,90 +30,61 @@ export const Demo = () => {
         <GeometricDecorations variant="default" />
         <AnimatedSection className="text-center mb-12 sm:mb-16 lg:mb-20">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
-            See It In Action
+            See It <span className="gradient-text">In Action</span>
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Watch our interactive demo or schedule a personalized walkthrough with our team
+            Watch our interactive demo or schedule a personalized walkthrough
           </p>
         </AnimatedSection>
 
         <div className="relative grid lg:grid-cols-2 gap-6 sm:gap-7 lg:gap-10 max-w-6xl mx-auto">
           <AnimatedSection animation="fade-right" delay={100}>
-            <Card className="p-6 sm:p-8 bg-card border-border h-full">
+            <Card className="p-6 sm:p-8 bg-card/30 border-border/50 h-full hover:border-primary/20 transition-all duration-500">
               <div 
                 className="aspect-video rounded-lg mb-6 flex items-center justify-center relative overflow-hidden cursor-pointer bg-cover bg-center"
-                style={{
-                  backgroundImage: "url('https://img.youtube.com/vi/BZSZzJ3fXJ0/maxresdefault.jpg')",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center"
-                }}
+                style={{ backgroundImage: "url('https://img.youtube.com/vi/BZSZzJ3fXJ0/maxresdefault.jpg')" }}
                 onClick={() => setIsVideoOpen(true)}
               >
-                <div className="absolute inset-0 bg-black/40 hover:bg-black/30 transition-all duration-300"></div>
-                <Button 
-                  size="lg" 
-                  className="relative z-10 bg-gradient-hero text-primary-foreground shadow-elegant hover:opacity-90 text-sm sm:text-base transform hover:scale-105 transition-transform duration-300"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsVideoOpen(true);
-                  }}
-                >
+                <div className="absolute inset-0 bg-background/60 hover:bg-background/40 transition-all duration-300"></div>
+                <Button size="lg" className="relative z-10 bg-primary text-primary-foreground shadow-[0_0_30px_hsl(175_80%_50%_/_0.3)] hover:shadow-[0_0_50px_hsl(175_80%_50%_/_0.5)] transform hover:scale-105 transition-all duration-300"
+                  onClick={(e) => { e.stopPropagation(); setIsVideoOpen(true); }}>
                   <Play className="h-5 w-5 sm:h-6 sm:w-6 mr-2" />
-                  <span className="hidden sm:inline">Watch Demo Video</span>
-                  <span className="sm:hidden">Watch Demo</span>
+                  Watch Demo
                 </Button>
               </div>
               <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3">Interactive Demo</h3>
-              <p className="text-sm sm:text-base text-muted-foreground mb-6">
-                Experience all features in our 5-minute interactive demo. See how easy it is to manage employees, track attendance, and handle leave requests.
+              <p className="text-sm text-muted-foreground mb-6">
+                Experience all features in our 5-minute interactive demo.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Button 
-                  variant="outline" 
-                  className="flex-1 text-sm sm:text-base"
-                  onClick={() => setIsVideoOpen(true)}
-                >
-                  <Play className="h-4 w-4 mr-2" />
-                  Launch Demo
+                <Button variant="outline" className="flex-1 border-border/50 hover:border-primary/50 hover:bg-primary/5" onClick={() => setIsVideoOpen(true)}>
+                  <Play className="h-4 w-4 mr-2" /> Launch Demo
                 </Button>
-                <Button variant="ghost" className="flex-1 sm:flex-initial text-sm sm:text-base" onClick={generatePdfGuide}>
-                  <Download className="h-4 w-4 mr-2" />
-                  <span className="hidden sm:inline">Get PDF Guide</span>
-                  <span className="sm:hidden">PDF Guide</span>
+                <Button variant="ghost" className="flex-1 sm:flex-initial text-muted-foreground hover:text-primary" onClick={generatePdfGuide}>
+                  <Download className="h-4 w-4 mr-2" /> PDF Guide
                 </Button>
               </div>
             </Card>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-left" delay={200}>
-            <Card className="p-6 sm:p-8 bg-gradient-hero text-primary-foreground shadow-elegant border-0 h-full">
-              <Calendar className="h-10 w-10 sm:h-12 sm:w-12 mb-6" />
-              <h3 className="text-xl sm:text-2xl font-bold mb-3">Schedule a Live Demo</h3>
-              <p className="text-sm sm:text-base mb-6 opacity-90">
-                Get a personalized walkthrough from our experts. We'll answer your questions and show you how our system can work for your organization.
+            <Card className="p-6 sm:p-8 h-full glow-border bg-card/30 border-primary/20">
+              <div className="h-12 w-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-6">
+                <Calendar className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3">Schedule a Live Demo</h3>
+              <p className="text-sm text-muted-foreground mb-6">
+                Get a personalized walkthrough from our experts.
               </p>
-              <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-8 text-sm sm:text-base">
-                <li className="flex items-start gap-2">
-                  <span className="text-white flex-shrink-0">✓</span>
-                  <span>30-minute personalized session</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-white flex-shrink-0">✓</span>
-                  <span>Q&A with HR technology expert</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-white flex-shrink-0">✓</span>
-                  <span>Custom feature recommendations</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-white flex-shrink-0">✓</span>
-                  <span>Free 14-day trial included</span>
-                </li>
+              <ul className="space-y-3 mb-8 text-sm">
+                {["30-minute personalized session", "Q&A with HR technology expert", "Custom feature recommendations", "Free 14-day trial included"].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 text-muted-foreground">
+                    <span className="text-primary flex-shrink-0">✓</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
-              <Button 
-                size="lg" 
-                className="w-full bg-white text-primary hover:bg-white/90 text-sm sm:text-base"
-              >
+              <Button size="lg" className="w-full bg-primary text-primary-foreground shadow-[0_0_20px_hsl(175_80%_50%_/_0.3)] hover:shadow-[0_0_30px_hsl(175_80%_50%_/_0.5)] transition-all duration-300">
                 Schedule Your Demo
               </Button>
             </Card>
