@@ -45,8 +45,8 @@ export const RoleBasedFeatures = () => {
             <AnimatedSection key={index} animation="fade-up" delay={index * 100}>
               <Card className={`p-6 h-full transition-all duration-500 ${
                 role.highlighted 
-                  ? 'bg-card/50 border-primary/30 shadow-[0_0_30px_hsl(175_80%_50%_/_0.1)] glow-border' 
-                  : 'bg-card/30 border-border/50 hover:border-primary/20'
+                  ? 'bg-card/90 border-primary/30 shadow-[0_0_30px_hsl(175_80%_50%_/_0.1)] glow-border backdrop-blur-sm' 
+                  : 'bg-card/80 border-border/50 hover:border-primary/20 backdrop-blur-sm'
               }`}>
                 <div className={`h-12 w-12 rounded-lg flex items-center justify-center mb-5 ${
                   role.highlighted ? 'bg-primary/10 border border-primary/20' : 'bg-muted border border-border/50'

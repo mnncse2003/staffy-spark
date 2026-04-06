@@ -39,7 +39,7 @@ export const Demo = () => {
 
         <div className="relative grid lg:grid-cols-2 gap-6 sm:gap-7 lg:gap-10 max-w-6xl mx-auto">
           <AnimatedSection animation="fade-right" delay={100}>
-            <Card className="p-6 sm:p-8 bg-card/30 border-border/50 h-full hover:border-primary/20 transition-all duration-500">
+            <Card className="p-6 sm:p-8 bg-card/80 border-border/50 h-full hover:border-primary/20 transition-all duration-500 backdrop-blur-sm">
               <div 
                 className="aspect-video rounded-lg mb-6 flex items-center justify-center relative overflow-hidden cursor-pointer bg-cover bg-center"
                 style={{ backgroundImage: "url('https://img.youtube.com/vi/BZSZzJ3fXJ0/maxresdefault.jpg')" }}
@@ -68,7 +68,7 @@ export const Demo = () => {
           </AnimatedSection>
 
           <AnimatedSection animation="fade-left" delay={200}>
-            <Card className="p-6 sm:p-8 h-full glow-border bg-card/30 border-primary/20">
+            <Card className="p-6 sm:p-8 h-full glow-border bg-card/80 border-primary/20 backdrop-blur-sm">
               <div className="h-12 w-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-6">
                 <Calendar className="h-6 w-6 text-primary" />
               </div>

@@ -69,7 +69,7 @@ export const FeaturesShowcase = () => {
               delay={index * 100}
               className="w-full"
             >
-              <div className="group relative bg-card/30 rounded-2xl overflow-hidden border border-border/50 hover:border-primary/30 transition-all duration-500">
+              <div className="group relative bg-card/80 rounded-2xl overflow-hidden border border-border/50 hover:border-primary/30 transition-all duration-500 backdrop-blur-sm">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/3 to-accent/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 <div className="relative p-6 sm:p-8 lg:p-10">

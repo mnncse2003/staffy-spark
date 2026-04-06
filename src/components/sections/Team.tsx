@@ -28,7 +28,7 @@ export const Team = () => {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
         {team.map((member, index) => (
           <AnimatedSection key={index} animation="fade-up" delay={index * 100}>
-            <Card className="p-6 bg-card/50 border-border/50 text-center hover:border-primary/30 transition-all duration-500 group glow-border">
+            <Card className="p-6 bg-card/85 border-border/50 text-center hover:border-primary/30 transition-all duration-500 group glow-border backdrop-blur-sm">
               <Avatar className="h-24 w-24 mx-auto mb-4 ring-2 ring-primary/20 group-hover:ring-primary/50 transition-all duration-500">
                 <AvatarFallback className="bg-gradient-to-br from-primary/20 to-accent/20 text-foreground text-2xl font-bold">
                   {member.initials}
