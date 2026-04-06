@@ -36,7 +36,7 @@ export const Comparison = () => {
       </AnimatedSection>
 
       <AnimatedSection animation="fade-up" delay={100}>
-        <Card className="overflow-hidden border-border/50 bg-card/30">
+        <Card className="overflow-hidden border-border/50 bg-card/80 backdrop-blur-sm">
           <div className="overflow-x-auto">
             <div className="md:hidden text-center py-2 text-xs text-muted-foreground border-b border-border/50">
               ← Scroll to see more →

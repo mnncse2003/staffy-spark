@@ -41,7 +41,7 @@ export const Features = () => {
       <div className="relative grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {features.map((feature, index) => (
           <AnimatedSection key={index} animation="fade-up" delay={index * 60}>
-            <Card className="p-6 sm:p-8 bg-card/30 border-border/50 h-full hover:border-primary/30 transition-all duration-500 group">
+            <Card className="p-6 sm:p-8 bg-card/80 border-border/50 h-full hover:border-primary/30 transition-all duration-500 group backdrop-blur-sm">
               <div className="h-12 w-12 rounded-lg bg-primary/5 border border-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/10 group-hover:border-primary/20 transition-all duration-500">
                 <feature.icon className="h-6 w-6 text-primary" />
               </div>

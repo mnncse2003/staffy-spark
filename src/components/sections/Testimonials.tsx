@@ -30,7 +30,7 @@ export const Testimonials = () => {
         <div className="relative grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {testimonials.map((testimonial, index) => (
             <AnimatedSection key={index} animation="scale" delay={index * 100}>
-              <Card className="p-6 bg-card/30 border-border/50 h-full hover:border-primary/20 transition-all duration-500 group">
+              <Card className="p-6 bg-card/80 border-border/50 h-full hover:border-primary/20 transition-all duration-500 group backdrop-blur-sm">
                 <div className="flex gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="h-4 w-4 fill-primary text-primary" />

@@ -109,8 +109,8 @@ export const Pricing = () => {
             <AnimatedSection key={plan.name} animation="fade-up" delay={index * 150}>
               <Card className={`p-8 sm:p-10 h-full transition-all duration-500 ${
                 plan.highlighted 
-                  ? 'bg-card/50 border-primary/30 shadow-[0_0_40px_hsl(175_80%_50%_/_0.15)] md:scale-105 glow-border' 
-                  : 'bg-card/30 border-border/50 hover:border-primary/20'
+                  ? 'bg-card/90 border-primary/30 shadow-[0_0_40px_hsl(175_80%_50%_/_0.15)] md:scale-105 glow-border backdrop-blur-sm' 
+                  : 'bg-card/80 border-border/50 hover:border-primary/20 backdrop-blur-sm'
               }`}>
                 {plan.highlighted && (
                   <div className="inline-block px-3 py-1 text-xs font-mono uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 rounded-full mb-4">
