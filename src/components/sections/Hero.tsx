@@ -1,99 +1,193 @@
+import { useRef, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
-import { Zap } from "lucide-react";
-import heroIllustration from "@/assets/illustration-hero.png";
-import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import { GeometricDecorations } from "@/components/ui/GeometricDecorations";
-import { useTypewriter } from "@/hooks/useTypewriter";
+import { ChevronDown } from "lucide-react";
+import logo from "@/assets/logo.png";
+import { Link } from "react-router-dom";
+
+const VIDEO_URL = "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_065045_c44942da-53c6-4804-b734-f9e07fc22e08.mp4";
+
+const MARQUEE_BRANDS = ["Vortex", "Nimbus", "Prysma", "Cirrus", "Kynder", "Halcyn"];
 
 export const Hero = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const rafRef = useRef<number>();
+
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const { displayText } = useTypewriter({
-    texts: [
-      'HR Management System',
-      'Attendance Tracking',
-      'Face Recognition',
-      'Leave Management',
-      'Salary Processing',
-      'Shift Management',
-    ],
-    typingSpeed: 70,
-    deletingSpeed: 35,
-    pauseDuration: 2500,
-  });
+  const fadeLoop = useCallback(() => {
+    const video = videoRef.current;
+    if (!video || video.paused) return;
+
+    const { currentTime, duration } = video;
+    const fadeIn = 0.5;
+    const fadeOut = 0.5;
+
+    if (currentTime < fadeIn) {
+      video.style.opacity = String(currentTime / fadeIn);
+    } else if (duration - currentTime < fadeOut) {
+      video.style.opacity = String((duration - currentTime) / fadeOut);
+    } else {
+      video.style.opacity = "1";
+    }
+
+    rafRef.current = requestAnimationFrame(fadeLoop);
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handlePlay = () => {
+      rafRef.current = requestAnimationFrame(fadeLoop);
+    };
+
+    const handleEnded = () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      video.style.opacity = "0";
+      setTimeout(() => {
+        video.currentTime = 0;
+        video.play();
+      }, 100);
+    };
+
+    video.addEventListener("play", handlePlay);
+    video.addEventListener("ended", handleEnded);
+
+    return () => {
+      video.removeEventListener("play", handlePlay);
+      video.removeEventListener("ended", handleEnded);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [fadeLoop]);
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-      <GeometricDecorations variant="hero" />
-      <div className="container mx-auto px-4 sm:px-6 py-16 sm:py-20 lg:py-24">
-        {/* Centered Heading */}
-        <AnimatedSection animation="fade-up" className="text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 text-primary text-sm font-medium mb-6 sm:mb-8 backdrop-blur-sm">
-            <Zap className="h-4 w-4" />
-            <span className="font-mono text-xs tracking-wider uppercase">ChronoStaff Suite — Complete HR Operations</span>
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight max-w-5xl mx-auto">
-            Complete Multi-Organization{" "}
-            <span className="gradient-text-animate">{displayText}</span>
-            <span className="inline-block w-0.5 h-[0.8em] bg-primary ml-1 animate-pulse align-middle" />
-          </h1>
-        </AnimatedSection>
+    <section className="relative min-h-screen flex flex-col overflow-hidden">
+      {/* Background Video */}
+      <video
+        ref={videoRef}
+        src={VIDEO_URL}
+        muted
+        playsInline
+        autoPlay
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ opacity: 0 }}
+      />
 
-        {/* Image Left, Text Right */}
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-16 sm:mb-20">
-          <AnimatedSection animation="fade-right" delay={100} className="relative order-2 lg:order-1">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 blur-[80px] rounded-full scale-110"></div>
-            <img 
-              src={heroIllustration} 
-              alt="Team collaborating on HR dashboard with employee profiles and analytics" 
-              className="relative w-full max-w-lg mx-auto drop-shadow-[0_0_40px_hsl(175_80%_50%_/_0.15)]"
-            />
-          </AnimatedSection>
-          
-          <AnimatedSection animation="fade-left" delay={200} className="space-y-8 order-1 lg:order-2 text-center lg:text-left">
-            <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-relaxed">
-              Streamline employee management, attendance tracking, face recognition, leave requests, salary slips, 
-              exit management, helpdesk, real-time chat, shift management, and self-service portal 
-              across multiple organizations with our comprehensive cloud-based platform.
+      {/* Content above video */}
+      <div className="relative z-10 flex flex-col min-h-screen">
+        {/* Navbar */}
+        <nav className="w-full py-5 px-8 flex items-center justify-between">
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+            <img src={logo} alt="ChronoStaff Suite" className="h-8" />
+          </div>
+
+          <div className="hidden md:flex items-center gap-1">
+            <button
+              onClick={() => scrollToSection("features")}
+              className="flex items-center gap-1 px-3 py-2 text-sm text-foreground/90 hover:text-foreground transition-colors duration-200"
+            >
+              Features <ChevronDown className="h-3.5 w-3.5" />
+            </button>
+            <button
+              onClick={() => scrollToSection("pricing")}
+              className="px-3 py-2 text-sm text-foreground/90 hover:text-foreground transition-colors duration-200"
+            >
+              Solutions
+            </button>
+            <button
+              onClick={() => scrollToSection("pricing")}
+              className="px-3 py-2 text-sm text-foreground/90 hover:text-foreground transition-colors duration-200"
+            >
+              Plans
+            </button>
+            <button
+              onClick={() => scrollToSection("faq")}
+              className="flex items-center gap-1 px-3 py-2 text-sm text-foreground/90 hover:text-foreground transition-colors duration-200"
+            >
+              Learning <ChevronDown className="h-3.5 w-3.5" />
+            </button>
+          </div>
+
+          <Link to="/login">
+            <Button
+              variant="secondary"
+              className="rounded-full px-4 py-2 bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-all duration-300"
+            >
+              Sign Up
+            </Button>
+          </Link>
+        </nav>
+
+        {/* Divider */}
+        <div className="mt-[3px] h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
+
+        {/* Hero Content */}
+        <div className="flex-1 flex items-center justify-center relative overflow-visible">
+          {/* Blurred overlay shape */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[984px] h-[527px] opacity-90 bg-gray-950 blur-[82px] pointer-events-none"
+          />
+
+          <div className="relative z-10 text-center px-4">
+            <h1
+              className="font-general-sans font-normal leading-[1.02] tracking-[-0.024em] text-foreground"
+              style={{ fontSize: "clamp(80px, 15vw, 220px)" }}
+            >
+              Power{" "}
+              <span
+                className="bg-clip-text"
+                style={{
+                  backgroundImage: "linear-gradient(to left, #6366f1, #a855f7, #fcd34d)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                AI
+              </span>
+            </h1>
+
+            <p className="text-lg leading-8 max-w-md mx-auto mt-[9px] opacity-80" style={{ color: "hsl(var(--hero-sub))" }}>
+              The most powerful AI ever deployed
+              <br />
+              in talent acquisition
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button 
-                size="lg" 
-                className="bg-primary text-primary-foreground shadow-[0_0_30px_hsl(175_80%_50%_/_0.3)] hover:shadow-[0_0_50px_hsl(175_80%_50%_/_0.5)] hover:bg-primary/90 transition-all duration-500 text-base px-8 py-6 font-semibold"
-                onClick={() => scrollToSection('pricing')}
-              >
-                Start Free Trial
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border border-border/50 hover:border-primary/50 hover:bg-primary/5 text-base px-8 py-6 transition-all duration-300"
-                onClick={() => scrollToSection('demo')}
-              >
-                Watch Demo
-              </Button>
-            </div>
-          </AnimatedSection>
+
+            <Button
+              variant="secondary"
+              className="mt-[25px] rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-all duration-300"
+              style={{ padding: "24px 29px" }}
+              onClick={() => scrollToSection("pricing")}
+            >
+              Schedule a Consult
+            </Button>
+          </div>
         </div>
 
-        {/* Centered Stats */}
-        <AnimatedSection animation="fade-up" delay={300} className="text-center">
-          <div className="flex flex-wrap justify-center gap-8 sm:gap-12 lg:gap-16">
-            {[
-              { value: 'Multi-Org', label: 'Support' },
-              { value: '5 Roles', label: 'Access Levels' },
-              { value: '14+', label: 'Leave Types' },
-              { value: '25+', label: 'Modules' },
-            ].map((stat, i) => (
-              <div key={i} className="text-center group">
-                <p className="text-3xl sm:text-4xl lg:text-5xl font-bold gradient-text group-hover:drop-shadow-[0_0_20px_hsl(175_80%_50%_/_0.4)] transition-all duration-300">{stat.value}</p>
-                <p className="text-sm sm:text-base text-muted-foreground mt-2 font-mono text-xs tracking-wider uppercase">{stat.label}</p>
+        {/* Logo Marquee */}
+        <div className="pb-10">
+          <div className="max-w-5xl mx-auto flex items-center gap-12 px-8">
+            <p className="text-foreground/50 text-sm shrink-0 leading-tight">
+              Relied on by brands
+              <br />
+              across the globe
+            </p>
+
+            <div className="flex-1 overflow-hidden">
+              <div className="flex gap-16 animate-marquee w-max">
+                {[...MARQUEE_BRANDS, ...MARQUEE_BRANDS].map((brand, i) => (
+                  <div key={i} className="flex items-center gap-3 shrink-0">
+                    <div className="liquid-glass w-6 h-6 rounded-lg flex items-center justify-center text-xs font-semibold text-foreground">
+                      {brand[0]}
+                    </div>
+                    <span className="text-base font-semibold text-foreground whitespace-nowrap">{brand}</span>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
-        </AnimatedSection>
+        </div>
       </div>
     </section>
   );

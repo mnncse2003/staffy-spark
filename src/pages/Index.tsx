@@ -1,4 +1,3 @@
-import { Navigation } from "@/components/sections/Navigation";
 import { Hero } from "@/components/sections/Hero";
 import { FeaturesShowcase } from "@/components/sections/FeaturesShowcase";
 import { Features } from "@/components/sections/Features";
@@ -15,7 +14,6 @@ import { Footer } from "@/components/sections/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-subtle">
-      <Navigation />
       <Hero />
       <FeaturesShowcase />
       <Features />
