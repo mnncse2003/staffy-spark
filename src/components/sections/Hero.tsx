@@ -44,13 +44,31 @@ export const Hero = () => {
             </Link>
           </div>
 
-          <Button
-            className="rounded-full px-5 py-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 shadow-[0_0_20px_hsl(175_80%_50%_/_0.3)]"
-            onClick={() => scrollToSection("pricing")}
+          {/* Mobile menu button */}
+          <button
+            className="md:hidden p-2 text-foreground/90 hover:text-foreground transition-colors"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            Get Started
-          </Button>
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </nav>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden px-8 pb-4 flex flex-col gap-2 bg-background/80 backdrop-blur-md border-b border-foreground/10">
+            <button onClick={() => scrollToSection("features")} className="py-2 text-sm text-foreground/90 hover:text-foreground text-left">Features</button>
+            <button onClick={() => scrollToSection("pricing")} className="py-2 text-sm text-foreground/90 hover:text-foreground text-left">Pricing</button>
+            <button onClick={() => scrollToSection("testimonials")} className="py-2 text-sm text-foreground/90 hover:text-foreground text-left">Testimonials</button>
+            <button onClick={() => scrollToSection("team")} className="py-2 text-sm text-foreground/90 hover:text-foreground text-left">Team</button>
+            <button onClick={() => scrollToSection("faq")} className="py-2 text-sm text-foreground/90 hover:text-foreground text-left">FAQ</button>
+            <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
+              <Button variant="ghost" className="w-full justify-start px-0 text-sm text-foreground/90 hover:text-foreground">
+                <User className="h-4 w-4 mr-1" />
+                Login
+              </Button>
+            </Link>
+          </div>
+        )}
 
         {/* Divider */}
         <div className="mt-[3px] h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
@@ -93,7 +111,7 @@ export const Hero = () => {
                 style={{ padding: "24px 29px" }}
                 onClick={() => scrollToSection("pricing")}
               >
-                Start Free Trial
+                Get Started
               </Button>
               <Button
                 variant="outline"
