@@ -79,6 +79,7 @@ const Index = () => {
       />
 
       {/* All content above video */}
+      <StickyNav />
       <div className="relative z-10">
         <Hero />
         <FeaturesShowcase />
