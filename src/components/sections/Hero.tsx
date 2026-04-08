@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Building2, User, Play, Globe, ShieldCheck, TreePalm, Layers } from "lucide-react";
+import { Building2, User, Play, Globe, ShieldCheck, TreePalm, Layers, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const MARQUEE_BRANDS = ["Vortex", "Nimbus", "Prysma", "Cirrus", "Kynder", "Halcyn"];
@@ -12,8 +13,11 @@ const STATS = [
 ];
 
 export const Hero = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setMobileMenuOpen(false);
   };
 
   return (
