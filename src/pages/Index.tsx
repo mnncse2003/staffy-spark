@@ -1,5 +1,6 @@
 import { useRef, useEffect, useCallback } from "react";
 import { Hero } from "@/components/sections/Hero";
+import { StickyNav } from "@/components/sections/StickyNav";
 import { FeaturesShowcase } from "@/components/sections/FeaturesShowcase";
 import { Features } from "@/components/sections/Features";
 import { RoleBasedFeatures } from "@/components/sections/RoleBasedFeatures";
