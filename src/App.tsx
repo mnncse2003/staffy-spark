@@ -10,6 +10,7 @@ import PurchaseSuccess from "./pages/PurchaseSuccess";
 import Login from "./pages/Login";
 import Account from "./pages/Account";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import { ChatBot } from "@/components/ChatBot";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <ChatBot />
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
