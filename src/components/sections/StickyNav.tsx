@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Building2, User, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export const StickyNav = () => {
   const [visible, setVisible] = useState(false);
@@ -62,12 +63,15 @@ export const StickyNav = () => {
               Login
             </Button>
           </Link>
+          <LanguageSwitcher variant="header" />
         </div>
 
-        <button
-          className="md:hidden p-2 text-foreground/90 hover:text-foreground transition-colors"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
+        <div className="md:hidden flex items-center gap-2">
+          <LanguageSwitcher variant="header" />
+          <button
+            className="p-2 text-foreground/90 hover:text-foreground transition-colors"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
           {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </nav>
