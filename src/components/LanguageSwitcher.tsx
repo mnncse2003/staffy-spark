@@ -34,11 +34,34 @@ export const LanguageSwitcher = ({ variant = "header" }: Props) => {
     return () => document.removeEventListener("mousedown", onClick);
   }, []);
 
+  const applyTranslation = (code: string) => {
+    // Set Google Translate cookie on root and parent domains so the widget picks it up
+    const value = code === "en" ? "/en/en" : `/en/${code}`;
+    const host = window.location.hostname;
+    document.cookie = `googtrans=${value};path=/`;
+    document.cookie = `googtrans=${value};path=/;domain=${host}`;
+    const parts = host.split(".");
+    if (parts.length > 1) {
+      const parent = "." + parts.slice(-2).join(".");
+      document.cookie = `googtrans=${value};path=/;domain=${parent}`;
+    }
+  };
+
+  // Apply saved language on first load
+  useEffect(() => {
+    if (current.code !== "en") {
+      applyTranslation(current.code);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const select = (lang: Lang) => {
     setCurrent(lang);
     localStorage.setItem("lang", lang.code);
     document.documentElement.lang = lang.code;
+    applyTranslation(lang.code);
     setOpen(false);
+    // Reload so Google Translate re-processes the entire DOM with the new language
+    window.location.reload();
   };
 
   const triggerClasses =
