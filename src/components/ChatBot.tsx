@@ -125,7 +125,7 @@ export const ChatBot = () => {
             </div>
             <div>
               <div className="font-semibold text-foreground text-sm">ChronoBot Assistant</div>
-              <div className="text-xs text-muted-foreground">Free AI · Ask anything</div>
+              <div className="text-xs text-muted-foreground">Ask anything</div>
             </div>
           </div>
 
