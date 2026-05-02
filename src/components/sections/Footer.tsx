@@ -1,4 +1,5 @@
 import { Building2 } from "lucide-react";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export const Footer = () => {
   const scrollToSection = (id: string) => {
@@ -46,8 +47,9 @@ export const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="border-t border-border/50 mt-8 pt-8 text-center text-sm text-muted-foreground">
+        <div className="border-t border-border/50 mt-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <p>© 2025 ChronoStaff Suite. All rights reserved.</p>
+          <LanguageSwitcher variant="footer" />
         </div>
       </div>
     </footer>
