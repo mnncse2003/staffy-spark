@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
-import { Globe, Check, ChevronDown } from "lucide-react";
+import { Globe, Check, ChevronDown, Loader2 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-type Lang = { code: string; label: string; flag: string };
+type Lang = { code: "en" | "hi" | "es" | "fr" | "de" | "ar" | "zh" | "ja"; label: string; flag: string };
 
 const LANGUAGES: Lang[] = [
   { code: "en", label: "English", flag: "🇺🇸" },
@@ -19,12 +20,10 @@ interface Props {
 }
 
 export const LanguageSwitcher = ({ variant = "header" }: Props) => {
+  const { lang, setLang, translating } = useLanguage();
   const [open, setOpen] = useState(false);
-  const [current, setCurrent] = useState<Lang>(() => {
-    const saved = typeof window !== "undefined" ? localStorage.getItem("lang") : null;
-    return LANGUAGES.find((l) => l.code === saved) ?? LANGUAGES[0];
-  });
   const ref = useRef<HTMLDivElement>(null);
+  const current = LANGUAGES.find((l) => l.code === lang) ?? LANGUAGES[0];
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
@@ -34,34 +33,9 @@ export const LanguageSwitcher = ({ variant = "header" }: Props) => {
     return () => document.removeEventListener("mousedown", onClick);
   }, []);
 
-  const applyTranslation = (code: string) => {
-    // Set Google Translate cookie on root and parent domains so the widget picks it up
-    const value = code === "en" ? "/en/en" : `/en/${code}`;
-    const host = window.location.hostname;
-    document.cookie = `googtrans=${value};path=/`;
-    document.cookie = `googtrans=${value};path=/;domain=${host}`;
-    const parts = host.split(".");
-    if (parts.length > 1) {
-      const parent = "." + parts.slice(-2).join(".");
-      document.cookie = `googtrans=${value};path=/;domain=${parent}`;
-    }
-  };
-
-  // Apply saved language on first load
-  useEffect(() => {
-    if (current.code !== "en") {
-      applyTranslation(current.code);
-    }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const select = (lang: Lang) => {
-    setCurrent(lang);
-    localStorage.setItem("lang", lang.code);
-    document.documentElement.lang = lang.code;
-    applyTranslation(lang.code);
+  const select = (l: Lang) => {
     setOpen(false);
-    // Reload so Google Translate re-processes the entire DOM with the new language
-    window.location.reload();
+    if (l.code !== lang) setLang(l.code);
   };
 
   const triggerClasses =
@@ -70,7 +44,7 @@ export const LanguageSwitcher = ({ variant = "header" }: Props) => {
       : "flex items-center gap-1.5 px-3 py-2 rounded-md text-sm text-muted-foreground hover:text-primary transition-colors border border-border/50 bg-card/40";
 
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref} className="relative" data-no-translate>
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
@@ -79,7 +53,11 @@ export const LanguageSwitcher = ({ variant = "header" }: Props) => {
       >
         <span className="text-base leading-none">{current.flag}</span>
         <span className="hidden sm:inline uppercase text-xs font-medium">{current.code}</span>
-        <ChevronDown className="h-3.5 w-3.5 opacity-70" />
+        {translating ? (
+          <Loader2 className="h-3.5 w-3.5 animate-spin opacity-70" />
+        ) : (
+          <ChevronDown className="h-3.5 w-3.5 opacity-70" />
+        )}
       </button>
 
       {open && (
@@ -92,15 +70,15 @@ export const LanguageSwitcher = ({ variant = "header" }: Props) => {
             <Globe className="h-3.5 w-3.5" /> Language
           </div>
           <ul className="max-h-64 overflow-y-auto py-1">
-            {LANGUAGES.map((lang) => (
-              <li key={lang.code}>
+            {LANGUAGES.map((l) => (
+              <li key={l.code}>
                 <button
-                  onClick={() => select(lang)}
+                  onClick={() => select(l)}
                   className="w-full flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-primary/10 transition-colors"
                 >
-                  <span className="text-base leading-none">{lang.flag}</span>
-                  <span className="flex-1 text-left">{lang.label}</span>
-                  {current.code === lang.code && <Check className="h-4 w-4 text-primary" />}
+                  <span className="text-base leading-none">{l.flag}</span>
+                  <span className="flex-1 text-left">{l.label}</span>
+                  {lang === l.code && <Check className="h-4 w-4 text-primary" />}
                 </button>
               </li>
             ))}
