@@ -44,13 +44,11 @@ const collectTextNodes = (root: Node): Text[] => {
 const ORIGINAL_KEY = "__orig_text__";
 
 const getOriginal = (node: Text): string => {
-  // @ts-expect-error custom prop
-  if (node[ORIGINAL_KEY] == null) {
-    // @ts-expect-error custom prop
-    node[ORIGINAL_KEY] = node.nodeValue ?? "";
+  const n = node as Text & { __orig_text__?: string };
+  if (n.__orig_text__ == null) {
+    n.__orig_text__ = node.nodeValue ?? "";
   }
-  // @ts-expect-error custom prop
-  return node[ORIGINAL_KEY];
+  return n.__orig_text__;
 };
 
 const loadCache = (lang: LangCode): Record<string, string> => {
