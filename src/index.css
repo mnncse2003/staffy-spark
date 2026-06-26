@@ -295,3 +295,23 @@
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(175 80% 50% / 0.5);
 }
+
+/* ChatBot messages scrollbar — always visible */
+.chatbot-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.chatbot-scroll::-webkit-scrollbar-track {
+  background: hsl(var(--muted) / 0.2);
+  border-radius: 4px;
+}
+.chatbot-scroll::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 4px;
+}
+.chatbot-scroll::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.8);
+}
+.chatbot-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary) / 0.5) transparent;
+}
