@@ -66,7 +66,7 @@ const Index = () => {
   }, [fadeLoop]);
 
   return (
-    <div className="min-h-screen bg-gradient-subtle relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-subtle relative overflow-x-hidden">
       {/* Global Background Video */}
       <video
         ref={videoRef}
