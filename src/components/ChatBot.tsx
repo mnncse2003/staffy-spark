@@ -1,20 +1,11 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Loader2, ImageIcon } from "lucide-react";
+import { MessageCircle, X, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ReactMarkdown from "react-markdown";
 
-type Msg = { role: "user" | "assistant"; content: string; image?: string };
+type Msg = { role: "user" | "assistant"; content: string };
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat-assistant`;
-const IMAGE_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-image`;
-
-const IMAGE_INTENT = /(?:^\/(?:image|img|draw)\b|\b(?:generate|create|make|draw|design|show me)\s+(?:an?\s+)?(?:image|picture|photo|illustration|logo|drawing|art)\b|\bimage\s+of\b|\bpicture\s+of\b)/i;
-
-const stripImageTrigger = (text: string) =>
-  text
-    .replace(/^\/(?:image|img|draw)\s*/i, "")
-    .replace(/^(?:please\s+)?(?:generate|create|make|draw|design|show me)\s+(?:an?\s+)?(?:image|picture|photo|illustration|drawing|art)\s+(?:of\s+)?/i, "")
-    .trim() || text;
 
 export const ChatBot = () => {
   const [open, setOpen] = useState(false);
@@ -24,7 +15,7 @@ export const ChatBot = () => {
     {
       role: "assistant",
       content:
-        "Hi! I'm **ChronoBot** 👋 — ask me anything about ChronoStaff Suite, or type `/image <prompt>` to generate a picture.",
+        "Hi! I'm **ChronoBot** 👋 — ask me anything about ChronoStaff Suite.",
     },
   ]);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -32,40 +23,6 @@ export const ChatBot = () => {
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, loading]);
-
-  const generateImage = async (rawText: string) => {
-    const prompt = stripImageTrigger(rawText);
-    setMessages((p) => [...p, { role: "assistant", content: `🎨 Generating an image of *${prompt}*…` }]);
-    try {
-      const resp = await fetch(IMAGE_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
-        },
-        body: JSON.stringify({ prompt }),
-      });
-      const data = await resp.json();
-      if (!resp.ok || !data.image) {
-        setMessages((p) =>
-          p.map((m, i) =>
-            i === p.length - 1 ? { role: "assistant", content: data.error || "Couldn't generate the image." } : m,
-          ),
-        );
-        return;
-      }
-      setMessages((p) =>
-        p.map((m, i) =>
-          i === p.length - 1
-            ? { role: "assistant", content: `Here's your image of **${prompt}**:`, image: data.image }
-            : m,
-        ),
-      );
-    } catch (e) {
-      console.error(e);
-      setMessages((p) => [...p, { role: "assistant", content: "Image generation failed. Please try again." }]);
-    }
-  };
 
   const send = async () => {
     const text = input.trim();
@@ -77,12 +34,6 @@ export const ChatBot = () => {
     setLoading(true);
 
     try {
-      if (IMAGE_INTENT.test(text)) {
-        await generateImage(text);
-        setLoading(false);
-        return;
-      }
-
       const resp = await fetch(CHAT_URL, {
         method: "POST",
         headers: {
@@ -197,13 +148,6 @@ export const ChatBot = () => {
                   <div className="prose prose-sm prose-invert max-w-none [&>*]:my-1 [&_p]:my-1 [&_ul]:my-1 [&_ol]:my-1">
                     <ReactMarkdown>{m.content}</ReactMarkdown>
                   </div>
-                  {m.image && (
-                    <img
-                      src={m.image}
-                      alt="Generated"
-                      className="mt-2 rounded-lg w-full h-auto border border-border/40"
-                    />
-                  )}
                 </div>
               </div>
             ))}
@@ -219,15 +163,6 @@ export const ChatBot = () => {
           {/* Input */}
           <div className="p-3 border-t border-border bg-background/50">
             <div className="flex gap-2 items-center">
-              <button
-                type="button"
-                onClick={() => setInput((v) => (v.trim() ? v : "/image "))}
-                title="Generate an image"
-                className="shrink-0 h-9 w-9 rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/80 flex items-center justify-center"
-                disabled={loading}
-              >
-                <ImageIcon className="h-4 w-4" />
-              </button>
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -237,7 +172,7 @@ export const ChatBot = () => {
                     send();
                   }
                 }}
-                placeholder="Ask anything or /image a sunset…"
+                placeholder="Ask anything about ChronoStaff…"
                 disabled={loading}
                 className="flex-1 rounded-full bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
               />
